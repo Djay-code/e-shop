@@ -138,6 +138,10 @@ nav a:hover,nav a:focus-visible{color:var(--accent);text-shadow:0 0 10px var(--n
 .thumb.photo{background:#FFF}
 .thumb svg,.thumb img{display:block;width:100%;height:100%}
 .thumb img{object-fit:contain;padding:3px;box-sizing:border-box}
+a.prod{display:block;cursor:pointer}
+a.prod:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+a.prod:hover svg,a.prod:hover img{transform:scale(1.03);transition:transform .2s}
+@media (prefers-reduced-motion:reduce){a.prod:hover svg,a.prod:hover img{transform:none}}
 .need{border-top:1px solid var(--line);padding:26px 0}
 .need h2{font-size:1.45rem;letter-spacing:-.02em}
 .need .for{color:var(--muted);margin-top:-.3em}
@@ -765,6 +769,35 @@ nav a:hover,nav a:focus-visible{color:var(--accent);text-shadow:0 0 10px var(--n
     if(type==="cables")return '<g fill="none" stroke-linecap="round" stroke-width="6"><path d="M20 50 C90 50 100 92 160 92 S240 140 300 140" stroke="#2A3036"/><path d="M20 70 C90 70 100 100 160 100 S240 120 300 120" stroke="#4A5560"/><path d="M20 30 C90 30 100 84 160 84 S240 160 300 160" stroke="#1A1F26"/></g><rect x="148" y="76" width="24" height="32" rx="6" fill="#00E5FF"/><rect x="238" y="112" width="20" height="40" rx="6" fill="#FF2BD6" transform="rotate(20 248 132)"/>';
     return "";
   }
+  // Liens produits (Amazon Partenaires)
+  // Pour chaque produit, collez entre les guillemets le lien de la page produit
+  // (barre SiteStripe > « Texte », lien court amzn.to, ou https://www.amazon.fr/dp/…).
+  // Tant qu’un lien est vide, le bouton, la miniature et l’image mènent à une recherche Amazon.
+  var LIENS = {
+    "Logitech MX Keys S": "",
+    "Keychron K2": "",
+    "Logitech K380": "",
+    "Tapis de souris XXL personnalisé": "",
+    "Repose-poignet": "",
+    "Support d’ordinateur portable": "",
+    "Barre lumineuse d’écran": "",
+    "Organiseur de câbles": "",
+    "Logitech Brio 500": "",
+    "Razer Kiyo": "",
+    "Logitech C920": "",
+    "Dell P2723QE": "",
+    "LG 27UP850": "",
+    "Dell S2721DS": "",
+    "Logitech MX Master 3S": "",
+    "Logitech Lift": "",
+    "Logitech M720 Triathlon": "",
+    "Jabra Evolve2 65": "",
+    "Sony WH-1000XM5": "",
+    "Logitech Zone Vibe 100": "",
+    "Anker 341 (7-en-1)": "",
+    "CalDigit TS4": "",
+    "UGREEN 5-en-1": ""
+  };
   // Photos des produits (Amazon Partenaires)
   // Pour chaque produit, collez entre les guillemets le lien d’image fourni par
   // Amazon Partenaires (barre SiteStripe > « Image », ou l’API Amazon).
@@ -798,7 +831,7 @@ nav a:hover,nav a:focus-visible{color:var(--accent);text-shadow:0 0 10px var(--n
   // Si une photo ne charge pas, on remet l’illustration à sa place
   function repli(img,svg,grand){
     img.addEventListener("error",function(){
-      var box=img.parentNode;
+      var box=img.closest(".shot,.thumb");
       box.classList.remove("photo");
       img.outerHTML='<svg viewBox="0 0 320 180" '+(grand?'role="img" aria-label="Illustration : '+esc(img.alt.replace(/^Photo : /,""))+'"':'aria-hidden="true"')+'>'+svg+'</svg>';
       var cap=box.querySelector("figcaption");
@@ -814,10 +847,10 @@ nav a:hover,nav a:focus-visible{color:var(--accent);text-shadow:0 0 10px var(--n
       var svg=art(type,nom),photo=PHOTOS[nom];
       if(svg)ART[nom]=svg;
       if(photo){
-        h2.insertAdjacentHTML("afterend",'<figure class="shot photo"><img src="'+esc(photo)+'" alt="Photo : '+esc(nom)+'" loading="lazy" decoding="async"><figcaption>Photo : Amazon</figcaption></figure>');
+        h2.insertAdjacentHTML("afterend",'<figure class="shot photo"><a class="prod" data-nom="'+esc(nom)+'"><img src="'+esc(photo)+'" alt="Photo : '+esc(nom)+'" loading="lazy" decoding="async"></a><figcaption>Photo : Amazon</figcaption></figure>');
         if(svg)repli(h2.nextElementSibling.querySelector("img"),svg,true);
       }else if(svg){
-        h2.insertAdjacentHTML("afterend",'<figure class="shot"><svg viewBox="0 0 320 180" role="img" aria-label="Illustration : '+esc(nom)+'">'+svg+'</svg><figcaption>Illustration. La photo officielle viendra d’Amazon Partenaires.</figcaption></figure>');
+        h2.insertAdjacentHTML("afterend",'<figure class="shot"><a class="prod" data-nom="'+esc(nom)+'"><svg viewBox="0 0 320 180" role="img" aria-label="Illustration : '+esc(nom)+'">'+svg+'</svg></a><figcaption>Illustration. La photo officielle viendra d’Amazon Partenaires.</figcaption></figure>');
       }
     });
   });
@@ -827,7 +860,7 @@ nav a:hover,nav a:focus-visible{color:var(--accent);text-shadow:0 0 10px var(--n
     var nom=st.textContent.trim(),photo=PHOTOS[nom],svg=ART[nom];
     if(!photo&&!svg)return;
     var n=li.parentNode.tagName==="OL"?Array.prototype.indexOf.call(li.parentNode.children,li)+1:0;
-    li.innerHTML='<span class="thumb'+(photo?' photo':'')+'">'+(photo?'<img src="'+esc(photo)+'" alt="" loading="lazy" decoding="async">':'<svg viewBox="0 0 320 180" aria-hidden="true">'+svg+'</svg>')+'</span><span>'+(n?'<span class="num">'+n+'.</span> ':'')+li.innerHTML+'</span>';
+    li.innerHTML='<a class="prod thumb'+(photo?' photo':'')+'" data-nom="'+esc(nom)+'">'+(photo?'<img src="'+esc(photo)+'" alt="" loading="lazy" decoding="async">':'<svg viewBox="0 0 320 180" aria-hidden="true">'+svg+'</svg>')+'</a><span>'+(n?'<span class="num">'+n+'.</span> ':'')+li.innerHTML+'</span>';
     li.parentNode.classList.add("with-thumbs");
     if(photo&&svg)repli(li.querySelector(".thumb img"),svg,false);
   });
@@ -835,9 +868,24 @@ nav a:hover,nav a:focus-visible{color:var(--accent);text-shadow:0 0 10px var(--n
   // Liens de commande vers Amazon
   // Remplace "" par ton identifiant Amazon Partenaires (exemple : "bureaumalin-21")
   var AMAZON_TAG = "";
+  function lienProduit(nom){
+    var u=LIENS[nom];
+    if(u){
+      if(AMAZON_TAG&&/amazon\.fr\//.test(u)&&!/[?&]tag=/.test(u))u+=(u.indexOf("?")<0?"?":"&")+"tag="+encodeURIComponent(AMAZON_TAG);
+      return u;
+    }
+    return "https://www.amazon.fr/s?k="+encodeURIComponent(nom)+(AMAZON_TAG?"&tag="+encodeURIComponent(AMAZON_TAG):"");
+  }
+  document.querySelectorAll("a.prod").forEach(function(a){
+    var nom=a.dataset.nom;
+    a.href=lienProduit(nom);
+    a.target="_blank";
+    a.rel="sponsored nofollow noopener";
+    a.setAttribute("aria-label","Voir "+nom+" sur Amazon (nouvel onglet)");
+  });
   document.querySelectorAll(".pick .btn").forEach(function(b){
     var nom=b.closest(".pick").querySelector("h2").textContent.replace(/^\d+\.\s*/,"");
-    b.href="https://www.amazon.fr/s?k="+encodeURIComponent(nom)+(AMAZON_TAG?"&tag="+encodeURIComponent(AMAZON_TAG):"");
+    b.href=lienProduit(nom);
     b.target="_blank";
     b.rel="sponsored nofollow noopener";
     b.setAttribute("aria-label",b.textContent+" : "+nom+" (nouvel onglet)");
@@ -853,10 +901,10 @@ nav a:hover,nav a:focus-visible{color:var(--accent);text-shadow:0 0 10px var(--n
   function suivre(d){try{navigator.sendBeacon("/.netlify/functions/suivi",JSON.stringify(d));}catch(e){}}
   suivre({t:"v"});
   document.addEventListener("click",function(e){
-    var a=e.target.closest("a.btn,a.chip");
-    if(!a||a.href.indexOf("amazon.")<0)return;
+    var a=e.target.closest("a.btn,a.chip,a.prod");
+    if(!a||!/amazon\.|amzn\.to/.test(a.href))return;
     var pk=a.closest(".pick");
-    suivre({t:"c",p:a.dataset.q||(pk?pk.querySelector("h2").textContent.replace(/^\d+\.\s*/,""):"")});
+    suivre({t:"c",p:a.dataset.q||a.dataset.nom||(pk?pk.querySelector("h2").textContent.replace(/^\d+\.\s*/,""):"")});
   });
 
   // Navigation entre les pages
