@@ -128,6 +128,16 @@ nav a:hover,nav a:focus-visible{color:var(--accent);text-shadow:0 0 10px var(--n
 .shot{margin:14px 0 18px;border-radius:14px;overflow:hidden;background:radial-gradient(ellipse at 50% 92%,rgba(0,229,255,.28),transparent 62%),linear-gradient(#1B2438,#10151F);border:1px solid rgba(0,229,255,.4);box-shadow:0 0 18px rgba(0,229,255,.15)}
 .shot svg{display:block;width:100%;height:clamp(170px,42vw,240px)}
 .shot figcaption{color:#9AA8C0;font-size:.8rem;padding:0 14px 10px}
+.shot.photo{background:#FFF}
+.shot img{display:block;width:100%;height:clamp(170px,42vw,240px);object-fit:contain;padding:12px;box-sizing:border-box}
+.shot.photo figcaption{color:#56656B}
+.verdict ol.with-thumbs{list-style:none;padding-left:0}
+.verdict ol.with-thumbs li{display:flex;align-items:center;gap:12px}
+.verdict .num{font-weight:600}
+.thumb{flex:none;width:72px;height:48px;border-radius:8px;overflow:hidden;background:linear-gradient(#1B2438,#10151F);border:1px solid rgba(0,229,255,.4)}
+.thumb.photo{background:#FFF}
+.thumb svg,.thumb img{display:block;width:100%;height:100%}
+.thumb img{object-fit:contain;padding:3px;box-sizing:border-box}
 .need{border-top:1px solid var(--line);padding:26px 0}
 .need h2{font-size:1.45rem;letter-spacing:-.02em}
 .need .for{color:var(--muted);margin-top:-.3em}
@@ -755,15 +765,71 @@ nav a:hover,nav a:focus-visible{color:var(--accent);text-shadow:0 0 10px var(--n
     if(type==="cables")return '<g fill="none" stroke-linecap="round" stroke-width="6"><path d="M20 50 C90 50 100 92 160 92 S240 140 300 140" stroke="#2A3036"/><path d="M20 70 C90 70 100 100 160 100 S240 120 300 120" stroke="#4A5560"/><path d="M20 30 C90 30 100 84 160 84 S240 160 300 160" stroke="#1A1F26"/></g><rect x="148" y="76" width="24" height="32" rx="6" fill="#00E5FF"/><rect x="238" y="112" width="20" height="40" rx="6" fill="#FF2BD6" transform="rotate(20 248 132)"/>';
     return "";
   }
-  var ACC=["tapis","poignet","support","lampe","cables"];
+  // Photos des produits (Amazon Partenaires)
+  // Pour chaque produit, collez entre les guillemets le lien d’image fourni par
+  // Amazon Partenaires (barre SiteStripe > « Image », ou l’API Amazon).
+  // Tant qu’un lien est vide (ou ne charge pas), l’illustration dessinée s’affiche.
+  var PHOTOS = {
+    "Logitech MX Keys S": "",
+    "Keychron K2": "",
+    "Logitech K380": "",
+    "Tapis de souris XXL personnalisé": "",
+    "Repose-poignet": "",
+    "Support d’ordinateur portable": "",
+    "Barre lumineuse d’écran": "",
+    "Organiseur de câbles": "",
+    "Logitech Brio 500": "",
+    "Razer Kiyo": "",
+    "Logitech C920": "",
+    "Dell P2723QE": "",
+    "LG 27UP850": "",
+    "Dell S2721DS": "",
+    "Logitech MX Master 3S": "",
+    "Logitech Lift": "",
+    "Logitech M720 Triathlon": "",
+    "Jabra Evolve2 65": "",
+    "Sony WH-1000XM5": "",
+    "Logitech Zone Vibe 100": "",
+    "Anker 341 (7-en-1)": "",
+    "CalDigit TS4": "",
+    "UGREEN 5-en-1": ""
+  };
+  function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  // Si une photo ne charge pas, on remet l’illustration à sa place
+  function repli(img,svg,grand){
+    img.addEventListener("error",function(){
+      var box=img.parentNode;
+      box.classList.remove("photo");
+      img.outerHTML='<svg viewBox="0 0 320 180" '+(grand?'role="img" aria-label="Illustration : '+esc(img.alt.replace(/^Photo : /,""))+'"':'aria-hidden="true"')+'>'+svg+'</svg>';
+      var cap=box.querySelector("figcaption");
+      if(cap)cap.textContent="Illustration. La photo officielle viendra d’Amazon Partenaires.";
+    });
+  }
+  var ACC=["tapis","poignet","support","lampe","cables"],ART={};
   document.querySelectorAll("section.view").forEach(function(sec){
     var id=sec.id.replace("v-","");
     sec.querySelectorAll(".pick").forEach(function(pk,i){
       var h2=pk.querySelector("h2"),nom=h2.textContent.replace(/^\d+\.\s*/,"");
       var type=id==="accessoires"?ACC[i]:id;
-      var svg=art(type,nom);
-      if(svg)h2.insertAdjacentHTML("afterend",'<figure class="shot"><svg viewBox="0 0 320 180" role="img" aria-label="Illustration : '+nom+'">'+svg+'</svg><figcaption>Illustration. La photo officielle viendra d’Amazon Partenaires.</figcaption></figure>');
+      var svg=art(type,nom),photo=PHOTOS[nom];
+      if(svg)ART[nom]=svg;
+      if(photo){
+        h2.insertAdjacentHTML("afterend",'<figure class="shot photo"><img src="'+esc(photo)+'" alt="Photo : '+esc(nom)+'" loading="lazy" decoding="async"><figcaption>Photo : Amazon</figcaption></figure>');
+        if(svg)repli(h2.nextElementSibling.querySelector("img"),svg,true);
+      }else if(svg){
+        h2.insertAdjacentHTML("afterend",'<figure class="shot"><svg viewBox="0 0 320 180" role="img" aria-label="Illustration : '+esc(nom)+'">'+svg+'</svg><figcaption>Illustration. La photo officielle viendra d’Amazon Partenaires.</figcaption></figure>');
+      }
     });
+  });
+  // Miniatures dans « Notre choix en bref »
+  document.querySelectorAll(".verdict li").forEach(function(li){
+    var st=li.querySelector("strong");if(!st)return;
+    var nom=st.textContent.trim(),photo=PHOTOS[nom],svg=ART[nom];
+    if(!photo&&!svg)return;
+    var n=li.parentNode.tagName==="OL"?Array.prototype.indexOf.call(li.parentNode.children,li)+1:0;
+    li.innerHTML='<span class="thumb'+(photo?' photo':'')+'">'+(photo?'<img src="'+esc(photo)+'" alt="" loading="lazy" decoding="async">':'<svg viewBox="0 0 320 180" aria-hidden="true">'+svg+'</svg>')+'</span><span>'+(n?'<span class="num">'+n+'.</span> ':'')+li.innerHTML+'</span>';
+    li.parentNode.classList.add("with-thumbs");
+    if(photo&&svg)repli(li.querySelector(".thumb img"),svg,false);
   });
 
   // Liens de commande vers Amazon
