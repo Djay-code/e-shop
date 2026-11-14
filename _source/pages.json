@@ -1,0 +1,50 @@
+{
+  "accueil": {
+    "title": "Bureau Malin – le bon matériel pour travailler de chez soi",
+    "description": "Comparatifs indépendants de claviers, souris, webcams et écrans pour le télétravail."
+  },
+  "clavier": {
+    "title": "Meilleur clavier pour le télétravail | Bureau Malin",
+    "description": "Notre sélection de claviers pour travailler de chez soi : silencieux, mécanique ou petit budget."
+  },
+  "webcam": {
+    "title": "Meilleure webcam pour les visios | Bureau Malin",
+    "description": "Les webcams qui donnent une image nette en visio, même à contre-jour ou dans une pièce sombre."
+  },
+  "ecran": {
+    "title": "Meilleur écran pour le télétravail | Bureau Malin",
+    "description": "Taille, définition, USB-C : les écrans qui transforment un poste de travail à la maison."
+  },
+  "souris": {
+    "title": "Meilleure souris ergonomique | Bureau Malin",
+    "description": "Les souris qui évitent les douleurs au poignet : sculptée, verticale ou petit budget."
+  },
+  "casque": {
+    "title": "Meilleur casque pour les visios | Bureau Malin",
+    "description": "Les casques pour des réunions claires : micro sur perche, réduction de bruit ou petit budget."
+  },
+  "hub": {
+    "title": "Meilleur hub USB-C pour laptop | Bureau Malin",
+    "description": "Brancher écran, clavier, souris et chargeur d’un seul câble : notre sélection de hubs USB-C."
+  },
+  "accessoires": {
+    "title": "Les accessoires qui changent un bureau | Bureau Malin",
+    "description": "Tapis XXL personnalisé, repose-poignet, support de laptop, lumière : les petits achats qui comptent."
+  },
+  "handicap": {
+    "title": "Un bureau adapté à chaque handicap | Bureau Malin",
+    "description": "Les équipements utiles selon le handicap et les aides de l’Agefiph pour financer son poste."
+  },
+  "transparence": {
+    "title": "Comment Bureau Malin gagne de l’argent | Bureau Malin",
+    "description": "Notre fonctionnement : liens d’affiliation, indépendance des classements et transparence."
+  },
+  "mentions-legales": {
+    "title": "Mentions légales | Bureau Malin",
+    "description": "Éditeur, hébergeur, affiliation et données personnelles du site Bureau Malin."
+  },
+  "cgv": {
+    "title": "Conditions de vente du kit | Bureau Malin",
+    "description": "Conditions générales de vente du Kit Bureau Malin, guide PDF du télétravail."
+  }
+}

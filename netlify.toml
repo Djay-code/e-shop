@@ -1,0 +1,26 @@
+# Le site est déjà généré (node outils/build.js) : Netlify publie le dépôt tel quel
+# et installe seulement les dépendances des fonctions.
+[build]
+  publish = "."
+  command = "echo 'Pages déjà générées'"
+
+[functions]
+  directory = "netlify/functions"
+
+# Les fichiers de travail ne sont pas publiés
+[[redirects]]
+  from = "/_source/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/outils/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
