@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Configurateur de bureau | Bureau Malin</title>
+<meta name="description" content="Répondez à 5 questions et obtenez un setup de télétravail complet adapté à votre budget, votre usage et votre confort.">
+<link rel="canonical" href="https://bureau-malin.netlify.app/configurateur/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF1EE; --surface:#FFFFFF; --ink:#1E2A2F; --muted:#56656B;
+  --line:#D5DCD8; --accent:#2F5BEA; --accent-ink:#FFFFFF; --hl:#FFD24D;
+  --neon1:#00E5FF; --neon2:#FF2BD6; --cta:#C4169F;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A1C; --surface:#1D2528; --ink:#E6ECEA; --muted:#9AA8AD;
+    --line:#2E3A3E; --accent:#7C9BFF; --accent-ink:#0E1430;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A1C; --surface:#1D2528; --ink:#E6ECEA; --muted:#9AA8AD;
+  --line:#2E3A3E; --accent:#7C9BFF; --accent-ink:#0E1430;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0 0 .5em}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:5;box-shadow:0 1px 0 var(--neon1),0 2px 16px rgba(0,229,255,.35)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px;flex-wrap:wrap}
+.logo{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.35rem;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+.logo span{display:inline-block;width:.6em;height:.6em;background:var(--neon1);border-radius:2px;margin-right:.35em;box-shadow:0 0 6px var(--neon1),0 0 16px var(--neon1)}
+nav a{color:var(--ink);text-decoration:none;margin-left:18px;font-weight:600;font-size:.98rem}
+nav a:hover{color:var(--accent)}
+main{max-width:760px;margin:0 auto;padding:36px 16px 24px}
+.crumb{font-size:.92rem;color:var(--muted)}
+.crumb a{color:var(--muted)}
+h1{font-size:clamp(2rem,4.5vw,2.9rem);font-weight:800;letter-spacing:-.03em;margin-top:.4em}
+.lead{color:var(--muted);font-size:1.12rem;max-width:56ch}
+.progress{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:24px 0 8px}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--neon1),var(--neon2));transition:width .25s ease}
+.step-n{font-size:.9rem;color:var(--muted)}
+fieldset{border:0;padding:0;margin:8px 0 0}
+legend{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.5rem;letter-spacing:-.02em;margin-bottom:.6em;padding:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opt span{display:block;height:100%;background:var(--surface);border:2px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;transition:border-color .15s ease,box-shadow .15s ease}
+.opt strong{display:block;font-size:1.05rem}
+.opt small{color:var(--muted);font-size:.95rem}
+.opt input:checked+span{border-color:var(--neon2);box-shadow:0 0 0 1px var(--neon2),0 0 16px rgba(255,43,214,.3)}
+.opt input:focus-visible+span{outline:3px solid var(--accent);outline-offset:3px}
+.nav-btns{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
+button{font:inherit}
+.btn{display:inline-block;border:0;background:var(--cta);color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:999px;cursor:pointer;box-shadow:0 0 10px rgba(255,43,214,.6),0 0 24px rgba(255,43,214,.3)}
+.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);padding:12px 20px;border-radius:999px;cursor:pointer;font-weight:600}
+.hidden{display:none}
+
+/* Résultat */
+.total{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:20px 0}
+.total .num{font-family:"Bricolage Grotesque",sans-serif;font-size:2.4rem;font-weight:800;letter-spacing:-.03em;line-height:1}
+.total p{margin:0;color:var(--muted)}
+.items{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}
+.items li{display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.items .cat{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.items h3{font-size:1.15rem;margin:.1em 0 .2em}
+.items p{margin:0;color:var(--muted);font-size:.97rem}
+.items .side{text-align:right}
+.items .price{font-weight:700;white-space:nowrap}
+.items .btn{padding:9px 16px;font-size:.95rem;margin-top:6px;white-space:nowrap}
+.skipped{margin-top:18px;color:var(--muted);font-size:.97rem}
+.disclose{background:var(--surface);border-left:4px solid var(--hl);padding:12px 16px;border-radius:0 8px 8px 0;font-size:.95rem;margin:20px 0}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}
+.upsell{background:var(--surface);border:1px solid var(--neon2);border-radius:14px;padding:20px;margin:28px 0;box-shadow:0 0 18px rgba(255,43,214,.18)}
+.upsell h2{font-size:1.3rem}
+.upsell p{margin:.3em 0 1em;color:var(--muted)}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:28px 0;color:var(--muted);font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+@media (max-width:560px){
+  nav a{margin:0 14px 0 0}
+  .items li{grid-template-columns:1fr}
+  .items .side{text-align:left;display:flex;align-items:center;gap:14px}
+  .items .btn{margin-top:0}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="../"><span></span>Bureau Malin</a>
+    <nav>
+      <a href="../">Guides</a>
+      <a href="./">Configurateur</a>
+      <a href="../kit/">Le kit</a>
+      <a href="../transparence/">Transparence</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="crumb"><a href="../">Guides</a> / Configurateur</div>
+  <h1>Votre setup de télétravail en 5 questions</h1>
+  <p class="lead">Répondez en 30 secondes : on compose un bureau complet qui tient dans votre budget, à partir des modèles de nos comparatifs.</p>
+
+  <form id="quiz" novalidate>
+    <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+    <p class="step-n" id="stepN" aria-live="polite"></p>
+    <div id="steps"></div>
+    <div class="nav-btns">
+      <button type="button" class="ghost" id="prev">Retour</button>
+      <button type="submit" class="btn" id="next" disabled>Suivant</button>
+    </div>
+  </form>
+
+  <section id="result" class="hidden" aria-live="polite">
+    <div class="total">
+      <div><p>Total indicatif</p><div class="num" id="tot"></div></div>
+      <p id="totNote"></p>
+    </div>
+    <div class="disclose">Prix indicatifs relevés en novembre 2026, ils varient souvent sur Amazon. Si vous achetez via nos liens, nous touchons une petite commission, sans surcoût pour vous. <a href="../transparence/">En savoir plus</a></div>
+    <ul class="items" id="items"></ul>
+    <p class="skipped" id="skipped"></p>
+    <div class="actions">
+      <button type="button" class="btn" id="share">Copier le lien de mon setup</button>
+      <button type="button" class="ghost" id="restart">Recommencer</button>
+    </div>
+    <div class="upsell">
+      <h2>Bien régler son bureau, ça compte autant que le matériel</h2>
+      <p>Le Kit Bureau Malin donne les bonnes hauteurs et les bonnes distances, une checklist d’installation en 30 minutes et les aides au financement. C’est un PDF à télécharger.</p>
+      <a class="btn" href="../kit/">Découvrir le kit</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Bureau Malin</span>
+    <span><a href="../transparence/">Transparence et affiliation</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var AMAZON_TAG="bureau-malin-21";
+
+  // Catalogue : les modèles des comparatifs, avec un prix indicatif en euros
+  var P={
+    clavier:{label:"Clavier",guide:"../clavier/",t:[
+      {n:"Logitech K380",p:40,w:"Compact, silencieux et multi-appareils."},
+      {n:"Keychron K2",p:90,w:"Mécanique, agréable pour taper beaucoup.",tag:"code"},
+      {n:"Logitech MX Keys S",p:110,w:"Frappe douce et silencieuse, rétroéclairé."}]},
+    souris:{label:"Souris",guide:"../souris/",t:[
+      {n:"Logitech M720 Triathlon",p:45,w:"Confortable, passe d’un appareil à l’autre."},
+      {n:"Logitech Lift",p:70,w:"Verticale, soulage le poignet.",tag:"poignet"},
+      {n:"Logitech MX Master 3S",p:100,w:"Sculptée pour la main, clics silencieux."}]},
+    ecran:{label:"Écran",guide:"../ecran/",t:[
+      {n:"Dell S2721DS",p:250,w:"27 pouces QHD, net pour le texte."},
+      {n:"LG 27UP850",p:430,w:"27 pouces 4K aux couleurs fidèles.",tag:"crea"},
+      {n:"Dell P2723QE",p:480,w:"27 pouces 4K, un seul câble USB-C pour tout."}]},
+    webcam:{label:"Webcam",guide:"../webcam/",t:[
+      {n:"Logitech C920",p:65,w:"La référence simple et fiable."},
+      {n:"Razer Kiyo",p:80,w:"Anneau lumineux intégré pour les pièces sombres.",tag:"sombre"},
+      {n:"Logitech Brio 500",p:110,w:"Bonne gestion du contre-jour, cache intégré."}]},
+    casque:{label:"Casque",guide:"../casque/",t:[
+      {n:"Logitech Zone Vibe 100",p:90,w:"Léger, micro correct pour les visios."},
+      {n:"Jabra Evolve2 65",p:200,w:"Micro sur perche très clair, voyant « occupé »."},
+      {n:"Sony WH-1000XM5",p:330,w:"Réduction de bruit parmi les meilleures.",tag:"bruit"}]},
+    hub:{label:"Hub USB-C",guide:"../hub/",t:[
+      {n:"UGREEN 5-en-1",p:25,w:"HDMI et USB dans un format de poche."},
+      {n:"Anker 341 (7-en-1)",p:35,w:"HDMI, USB, cartes et recharge du laptop."},
+      {n:"CalDigit TS4",p:380,w:"Station Thunderbolt : tout le bureau sur un câble."}]},
+    support:{label:"Support de laptop",guide:"../accessoires/",t:[{n:"Support d’ordinateur portable",q:"support ordinateur portable réglable",p:30,w:"Remonte l’écran à hauteur des yeux."}]},
+    repose:{label:"Repose-poignet",guide:"../accessoires/",t:[{n:"Repose-poignet mémoire de forme",q:"repose poignet clavier mémoire de forme",p:20,w:"Garde le poignet dans l’axe."}]},
+    lampe:{label:"Barre lumineuse",guide:"../accessoires/",t:[{n:"Barre lumineuse d’écran",q:"barre lumineuse écran",p:40,w:"Éclaire le bureau sans reflet sur l’écran."}]},
+    cables:{label:"Rangement des câbles",guide:"../accessoires/",t:[{n:"Organiseur de câbles",q:"goulotte câbles sous bureau",p:15,w:"Un bureau net, en vrai comme en visio."}]}
+  };
+
+  var Q=[
+    {k:"poste",q:"Sur quoi travaillez-vous ?",o:[
+      ["laptop","Un ordinateur portable","Je n’ai que lui pour l’instant."],
+      ["laptop-ecran","Un portable et un écran","J’ai déjà un écran externe."],
+      ["fixe","Un ordinateur fixe","Une tour ou un mini PC."]]},
+    {k:"usage",q:"Votre journée type ?",o:[
+      ["visio","Beaucoup de visios","Réunions, appels clients, formation."],
+      ["texte","Écrire et analyser","Mails, documents, tableurs, code."],
+      ["crea","Travail créatif","Photo, vidéo, design."]]},
+    {k:"corps",q:"Une gêne à soulager ?",o:[
+      ["aucune","Aucune","Tout va bien de ce côté."],
+      ["poignet","Poignet ou avant-bras","Canal carpien, tendinite."],
+      ["nuque","Nuque ou dos","Je finis la journée raide."]]},
+    {k:"lieu",q:"Où travaillez-vous ?",o:[
+      ["calme","Une pièce calme","Bureau dédié ou chambre."],
+      ["bruit","Un endroit bruyant","Enfants, colocation, open space."],
+      ["sombre","Une pièce sombre","Peu de lumière naturelle."]]},
+    {k:"budget",q:"Votre budget total ?",o:[
+      ["150","Moins de 150 €","L’essentiel."],
+      ["400","Jusqu’à 400 €","Un vrai confort."],
+      ["800","Jusqu’à 800 €","Un poste complet."],
+      ["1500","Jusqu’à 1 500 €","Le haut de gamme."]]}
+  ];
+
+  var A={},i=0;
+  var stepsEl=document.getElementById("steps"),bar=document.getElementById("bar"),stepN=document.getElementById("stepN");
+  var prev=document.getElementById("prev"),next=document.getElementById("next"),form=document.getElementById("quiz");
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+
+  function draw(){
+    var s=Q[i];
+    stepsEl.innerHTML='<fieldset><legend>'+esc(s.q)+'</legend><div class="opts">'+s.o.map(function(o){
+      return '<label class="opt"><input type="radio" name="'+s.k+'" value="'+o[0]+'"'+(A[s.k]===o[0]?" checked":"")+'><span><strong>'+esc(o[1])+'</strong><small>'+esc(o[2])+'</small></span></label>';
+    }).join("")+'</div></fieldset>';
+    stepN.textContent="Question "+(i+1)+" sur "+Q.length;
+    bar.style.width=(i/Q.length*100)+"%";
+    prev.style.visibility=i?"visible":"hidden";
+    next.textContent=i===Q.length-1?"Voir mon setup":"Suivant";
+    next.disabled=!A[s.k];
+  }
+  stepsEl.addEventListener("change",function(e){
+    A[e.target.name]=e.target.value;next.disabled=false;
+    // Passe automatiquement à la question suivante après un choix à la souris
+    if(e.target.matches(":focus-visible"))return;
+    setTimeout(go,180);
+  });
+  function go(){
+    if(!A[Q[i].k])return;
+    if(i<Q.length-1){i++;draw();stepsEl.querySelector("input").focus({preventScroll:true});}
+    else show();
+  }
+  form.addEventListener("submit",function(e){e.preventDefault();go();});
+  prev.addEventListener("click",function(){if(i){i--;draw();}});
+
+  // Construit le setup : ordre de priorité, puis montée en gamme tant que le budget le permet
+  function build(a){
+    var budget=+a.budget,prio=[];
+    var laptop=a.poste==="laptop";
+    // Sur portable, le support ne sert qu’avec un clavier et une souris externes
+    if(laptop)prio.push("support","clavier","souris");
+    // Un créatif sur portable a besoin d’un grand écran avant le reste
+    if(laptop&&a.usage==="crea")prio.push("ecran","hub");
+    if(a.usage==="visio"||a.lieu==="bruit")prio.push("casque");
+    // Un portable a déjà une webcam : une externe passe après
+    if(a.usage==="visio"&&!laptop)prio.push("webcam");
+    if(!laptop)prio.push("clavier","souris");
+    if(a.corps==="poignet")prio.push("repose");
+    if(a.lieu==="sombre")prio.push("lampe");
+    if(laptop)prio.push("ecran","hub");
+    prio.push("casque","webcam","lampe","cables");
+    prio=prio.filter(function(k,j){return prio.indexOf(k)===j;});
+
+    // Modèle de départ (le moins cher) et modèle visé selon le profil
+    function wanted(k){
+      var t=P[k].t,want={poignet:a.corps==="poignet",bruit:a.lieu==="bruit",sombre:a.lieu==="sombre",crea:a.usage==="crea",code:a.usage==="texte"};
+      for(var j=0;j<t.length;j++)if(t[j].tag&&want[t[j].tag])return j;
+      return t.length-1;
+    }
+    var pick={},total=0;
+    function add(k){
+      // Un hub ne sert qu’avec un écran externe
+      if(k in pick||(k==="hub"&&!("ecran" in pick)))return false;
+      var c=P[k].t[0].p;
+      if(total+c>budget)return false;
+      pick[k]=0;total+=c;return true;
+    }
+    function upgrade(list){
+      // Montée en gamme d’un cran à la fois, dans l’ordre des priorités, vers le modèle le plus adapté
+      var changed=true;
+      while(changed){
+        changed=false;
+        list.forEach(function(k){
+          if(!(k in pick)||pick[k]>=wanted(k))return;
+          // On saute les modèles spécialisés qui ne correspondent pas au profil (ex. souris verticale sans gêne au poignet)
+          var t=P[k].t,tg=wanted(k),nxt=pick[k]+1;
+          while(nxt<tg&&t[nxt].tag)nxt++;
+          var diff=P[k].t[nxt].p-P[k].t[pick[k]].p;
+          // La station Thunderbolt n’a de sens qu’avec un gros budget
+          if(k==="hub"&&nxt===2&&budget<1500)return;
+          if(total+diff<=budget){pick[k]=nxt;total+=diff;changed=true;}
+        });
+      }
+    }
+    // 1) les postes essentiels, montés en gamme d’abord
+    var core=prio.slice(0,4);
+    core.forEach(add);upgrade(core);
+    // 2) le reste du bureau avec ce qui reste du budget
+    var changed=true;
+    while(changed){changed=false;prio.forEach(function(k){if(add(k))changed=true;});}
+    upgrade(prio);
+    var skipped=prio.filter(function(k){return !(k in pick);});
+    return {prio:prio,pick:pick,total:total,skipped:skipped,budget:budget};
+  }
+
+  function link(it){
+    return "https://www.amazon.fr/s?k="+encodeURIComponent(it.q||it.n)+"&tag="+encodeURIComponent(AMAZON_TAG);
+  }
+  function eur(n){return n.toLocaleString("fr-FR")+" €";}
+
+  function show(){
+    var r=build(A);
+    bar.style.width="100%";
+    form.classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("tot").textContent="≈ "+eur(r.total);
+    document.getElementById("totNote").textContent="pour un budget de "+eur(r.budget)+(r.budget-r.total>=20?", il vous reste environ "+eur(r.budget-r.total):"");
+    var html="";
+    r.prio.forEach(function(k){
+      if(!(k in r.pick))return;
+      var it=P[k].t[r.pick[k]];
+      html+='<li><div><div class="cat">'+esc(P[k].label)+'</div><h3>'+esc(it.n)+'</h3><p>'+esc(it.w)+' <a href="'+P[k].guide+'">Voir le comparatif</a></p></div>'+
+        '<div class="side"><div class="price">≈ '+eur(it.p)+'</div><a class="btn" data-nom="'+esc(it.n)+'" href="'+link(it)+'" target="_blank" rel="sponsored nofollow noopener" aria-label="Voir '+esc(it.n)+' sur Amazon (nouvel onglet)">Voir sur Amazon</a></div></li>';
+    });
+    document.getElementById("items").innerHTML=html;
+    document.getElementById("skipped").textContent=r.skipped.length?"Pour plus tard, quand le budget le permettra : "+r.skipped.map(function(k){return P[k].label.toLowerCase();}).join(", ")+".":"";
+    var qs=Q.map(function(s){return s.k+"="+A[s.k];}).join("&");
+    history.replaceState(null,"","?"+qs);
+    suivre({t:"cfg",p:qs});
+    document.getElementById("result").scrollIntoView({behavior:"smooth",block:"start"});
+  }
+
+  document.getElementById("restart").addEventListener("click",function(){
+    A={};i=0;history.replaceState(null,"",location.pathname);
+    document.getElementById("result").classList.add("hidden");form.classList.remove("hidden");draw();window.scrollTo(0,0);
+  });
+  document.getElementById("share").addEventListener("click",function(){
+    var b=this,url=location.href;
+    function ok(){b.textContent="Lien copié !";setTimeout(function(){b.textContent="Copier le lien de mon setup";},2000);}
+    if(navigator.clipboard)navigator.clipboard.writeText(url).then(ok,function(){prompt("Copiez ce lien :",url);});
+    else prompt("Copiez ce lien :",url);
+  });
+
+  // Mesure d’audience anonyme, sans cookie (même fonction que le reste du site)
+  function suivre(d){try{navigator.sendBeacon("/.netlify/functions/suivi",JSON.stringify(d));}catch(e){}}
+  suivre({t:"v"});
+  document.addEventListener("click",function(e){
+    var a=e.target.closest("a.btn[data-nom]");
+    if(a)suivre({t:"c",p:a.dataset.nom});
+  });
+
+  // Un lien partagé rouvre directement le résultat
+  var p=new URLSearchParams(location.search),full=true;
+  Q.forEach(function(s){var v=p.get(s.k);if(v&&s.o.some(function(o){return o[0]===v;}))A[s.k]=v;else full=false;});
+  if(full)show();else{A={};draw();}
+})();
+</script>
+</body>
+</html>
