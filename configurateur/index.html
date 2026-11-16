@@ -168,29 +168,29 @@ nav a[aria-current="page"]{color:var(--accent)}
   // Catalogue : les modèles des comparatifs, avec un prix indicatif en euros
   var P={
     clavier:{label:"Clavier",guide:"/clavier/",t:[
-      {n:"Logitech K380",p:40,w:"Compact, silencieux et multi-appareils."},
+      {n:"Logitech K380",a:"B013SL1ZQ0",p:40,w:"Compact, silencieux et multi-appareils."},
       {n:"Keychron K2",p:90,w:"Mécanique, agréable pour taper beaucoup.",tag:"code"},
-      {n:"Logitech MX Keys S",p:110,w:"Frappe douce et silencieuse, rétroéclairé."}]},
+      {n:"Logitech MX Keys S",a:"B07W5JK4VS",p:110,w:"Frappe douce et silencieuse, rétroéclairé."}]},
     souris:{label:"Souris",guide:"/souris/",t:[
-      {n:"Logitech M720 Triathlon",p:45,w:"Confortable, passe d’un appareil à l’autre."},
-      {n:"Logitech Lift",p:70,w:"Verticale, soulage le poignet.",tag:"poignet"},
-      {n:"Logitech MX Master 3S",p:100,w:"Sculptée pour la main, clics silencieux."}]},
+      {n:"Logitech M720 Triathlon",a:"B01KZVQB42",p:45,w:"Confortable, passe d’un appareil à l’autre."},
+      {n:"Logitech Lift",a:"B07W4DGC27",p:70,w:"Verticale, soulage le poignet.",tag:"poignet"},
+      {n:"Logitech MX Master 3S",a:"B07W5JKHFZ",p:100,w:"Sculptée pour la main, clics silencieux."}]},
     ecran:{label:"Écran",guide:"/ecran/",t:[
-      {n:"Dell S2721DS",p:250,w:"27 pouces QHD, net pour le texte."},
-      {n:"LG 27UP850",p:430,w:"27 pouces 4K aux couleurs fidèles.",tag:"crea"},
-      {n:"Dell P2723QE",p:480,w:"27 pouces 4K, un seul câble USB-C pour tout."}]},
+      {n:"Dell S2721DS",a:"B08GGG9BFJ",p:250,w:"27 pouces QHD, net pour le texte."},
+      {n:"LG 27UP850",a:"B08YJMMYBX",p:430,w:"27 pouces 4K aux couleurs fidèles.",tag:"crea"},
+      {n:"Dell P2723QE",a:"B09TY127B8",p:480,w:"27 pouces 4K, un seul câble USB-C pour tout."}]},
     webcam:{label:"Webcam",guide:"/webcam/",t:[
-      {n:"Logitech C920",p:65,w:"La référence simple et fiable."},
-      {n:"Razer Kiyo",p:80,w:"Anneau lumineux intégré pour les pièces sombres.",tag:"sombre"},
-      {n:"Logitech Brio 500",p:110,w:"Bonne gestion du contre-jour, cache intégré."}]},
+      {n:"Logitech C920",a:"B006A2Q81M",p:65,w:"La référence simple et fiable."},
+      {n:"Razer Kiyo",a:"B076QK6489",p:80,w:"Anneau lumineux intégré pour les pièces sombres.",tag:"sombre"},
+      {n:"Logitech Brio 500",a:"B07W5JKKFJ",p:110,w:"Bonne gestion du contre-jour, cache intégré."}]},
     casque:{label:"Casque",guide:"/casque/",t:[
-      {n:"Logitech Zone Vibe 100",p:90,w:"Léger, micro correct pour les visios."},
-      {n:"Jabra Evolve2 65",p:200,w:"Micro sur perche très clair, voyant « occupé »."},
-      {n:"Sony WH-1000XM5",p:330,w:"Réduction de bruit parmi les meilleures.",tag:"bruit"}]},
+      {n:"Logitech Zone Vibe 100",a:"B07W7JYN4P",p:90,w:"Léger, micro correct pour les visios."},
+      {n:"Jabra Evolve2 65",a:"B086M57V71",p:200,w:"Micro sur perche très clair, voyant « occupé »."},
+      {n:"Sony WH-1000XM5",a:"B09Y2MYL5C",p:330,w:"Réduction de bruit parmi les meilleures.",tag:"bruit"}]},
     hub:{label:"Hub USB-C",guide:"/hub/",t:[
-      {n:"UGREEN 5-en-1",p:25,w:"HDMI et USB dans un format de poche."},
-      {n:"Anker 341 (7-en-1)",p:35,w:"HDMI, USB, cartes et recharge du laptop."},
-      {n:"CalDigit TS4",p:380,w:"Station Thunderbolt : tout le bureau sur un câble."}]},
+      {n:"UGREEN 5-en-1",a:"B0BR3M8XHK",p:25,w:"HDMI et USB dans un format de poche."},
+      {n:"Anker 341 (7-en-1)",a:"B0BMXR7B2Q",p:35,w:"HDMI, USB, cartes et recharge du laptop."},
+      {n:"CalDigit TS4",a:"B09GFRPGWZ",p:380,w:"Station Thunderbolt : tout le bureau sur un câble."}]},
     support:{label:"Support de laptop",guide:"/accessoires/",t:[{n:"Support d’ordinateur portable",q:"support ordinateur portable réglable",p:30,w:"Remonte l’écran à hauteur des yeux."}]},
     repose:{label:"Repose-poignet",guide:"/accessoires/",t:[{n:"Repose-poignet mémoire de forme",q:"repose poignet clavier mémoire de forme",p:20,w:"Garde le poignet dans l’axe."}]},
     lampe:{label:"Barre lumineuse",guide:"/accessoires/",t:[{n:"Barre lumineuse d’écran",q:"barre lumineuse écran",p:40,w:"Éclaire le bureau sans reflet sur l’écran."}]},
@@ -312,6 +312,8 @@ nav a[aria-current="page"]{color:var(--accent)}
   }
 
   function link(it){
+    // Lien direct vers la fiche produit quand on connaît sa référence Amazon (ASIN), sinon une recherche
+    if(it.a)return "https://www.amazon.fr/dp/"+it.a+"?tag="+encodeURIComponent(AMAZON_TAG);
     return "https://www.amazon.fr/s?k="+encodeURIComponent(it.q||it.n)+"&tag="+encodeURIComponent(AMAZON_TAG);
   }
   function eur(n){return n.toLocaleString("fr-FR")+" €";}
