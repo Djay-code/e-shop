@@ -23,6 +23,12 @@ Les dossiers `index.html`, `clavier/`, `webcam/`… sont **générés** : ne pas
 2. Lancer `node outils/build.js` (Playwright requis).
 3. Commiter les fichiers générés.
 
+## Module du kit
+
+L’encart « Kit Bureau Malin » est ajouté automatiquement sur l’accueil et à la fin de chaque guide.
+Son texte, son prix et les pages qui le reçoivent se règlent dans l’objet `KIT` de `outils/build.js`
+(retirer une page de `accroches` retire l’encart de cette page). Les clics sont comptés dans les statistiques (`kit`).
+
 ## Mise en ligne
 
 Le site doit être déployé **depuis GitHub** (Netlify > Add new project > Import from Git) et non par glisser-déposer :

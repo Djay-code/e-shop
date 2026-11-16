@@ -91,6 +91,16 @@ const CSS_EXTRA = `
 nav a[aria-current="page"]{color:var(--accent)}
 footer .links a{margin-left:16px}
 [data-a-completer]{background:var(--hl);color:#1E2A2F;padding:0 4px;border-radius:3px}
+/* Module Kit Bureau Malin */
+.kit-promo{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center;margin:36px 0 8px;padding:22px;background:var(--surface);border:1px solid var(--neon2);border-radius:16px;box-shadow:0 0 18px rgba(255,43,214,.18)}
+.kit-promo-cover{aspect-ratio:3/4;border-radius:10px;padding:14px 12px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;background:linear-gradient(160deg,#1F2E45,#141A1C);box-shadow:0 0 0 1px rgba(0,229,255,.5),0 0 18px rgba(0,229,255,.25)}
+.kit-promo-cover small{color:#FF7BE5;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.68rem}
+.kit-promo-cover strong{font-family:"Bricolage Grotesque",sans-serif;font-size:1.05rem;line-height:1.1;margin-top:.3em}
+.kit-promo-hook{margin:0 0 .4em;color:var(--muted)}
+.kit-promo h2{font-size:1.35rem;margin:0 0 .4em}
+.kit-promo ul{margin:0 0 16px;padding-left:1.1em}
+.kit-promo li{margin:.15em 0}
+@media (max-width:560px){.kit-promo{grid-template-columns:1fr}.kit-promo-cover{aspect-ratio:auto;min-height:110px;max-width:220px}}
 .legal h2{font-size:1.35rem;margin-top:1.4em}
 @media (max-width:820px){
   nav{overflow:visible;white-space:normal;display:flex;flex-wrap:wrap;gap:4px 16px}
@@ -98,6 +108,56 @@ footer .links a{margin-left:16px}
   footer .links a{margin:0 16px 0 0}
 }
 `;
+
+// Module « Kit Bureau Malin » : encart de promotion inséré automatiquement sur l'accueil
+// et à la fin de chaque guide. Pour changer le texte ou le prix, c'est ici.
+const KIT = {
+  prix: "9 €",
+  url: "/kit/",
+  // Pages qui reçoivent l'encart, avec une accroche adaptée au sujet
+  accroches: {
+    accueil: "Le matériel ne fait pas tout : un écran trop bas ou une fenêtre mal placée suffisent à gâcher une journée.",
+    clavier: "Un bon clavier mal placé fatigue quand même les poignets.",
+    souris: "Une souris ergonomique ne suffit pas si le bureau est trop haut.",
+    ecran: "Hauteur, distance, lumière : un écran se règle autant qu’il se choisit.",
+    webcam: "La lumière compte plus que la webcam pour être net en visio.",
+    casque: "Un bon son en visio commence par les bons réglages.",
+    hub: "Un seul câble pour brancher son bureau, c’est bien. Un poste bien réglé, c’est mieux.",
+    accessoires: "Les petits accessoires marchent mieux sur un bureau bien réglé.",
+    handicap: "Préparez la discussion avec votre employeur et l’Agefiph avec un plan clair.",
+  },
+};
+
+function kitModule(v) {
+  const accroche = KIT.accroches[v];
+  if (!accroche) return "";
+  return `<aside class="kit-promo" aria-label="Kit Bureau Malin">
+  <div class="kit-promo-cover" aria-hidden="true"><small>Guide PDF</small><strong>Kit Bureau Malin</strong></div>
+  <div class="kit-promo-body">
+    <p class="kit-promo-hook">${esc(accroche)}</p>
+    <h2>Un bureau bien réglé en 30 minutes</h2>
+    <ul>
+      <li>Les bonnes hauteurs et distances, faciles à vérifier</li>
+      <li>Une checklist d’installation à cocher</li>
+      <li>Un plan d’achat par étapes et les aides au financement</li>
+    </ul>
+    <a class="btn" href="${KIT.url}" data-kit="${v}">Découvrir le kit · ${KIT.prix}</a>
+  </div>
+</aside>`;
+}
+
+// Place l'encart : après le bouton du configurateur sur l'accueil, en fin d'article ailleurs
+function avecKit(v, html) {
+  const bloc = kitModule(v);
+  if (!bloc) return html;
+  if (v === "accueil") {
+    const ancre = "Composer mon setup en 5 questions</a></p>";
+    if (html.includes(ancre)) return html.replace(ancre, ancre + "\n" + bloc);
+    return html + bloc;
+  }
+  const i = html.lastIndexOf("</article>");
+  return i < 0 ? html + bloc : html.slice(0, i) + bloc + "\n" + html.slice(i);
+}
 
 function page(v, main, defs) {
   return `${head(v)}
@@ -153,7 +213,7 @@ ${ASSISTANT}
     fs.mkdirSync(dir, { recursive: true });
     // Les dégradés des illustrations ne servent que sur les pages qui en ont
     const defs = out.views[v].includes("url(#p") ? out.defs : "";
-    fs.writeFileSync(path.join(dir, "index.html"), page(v, out.views[v], defs));
+    fs.writeFileSync(path.join(dir, "index.html"), page(v, avecKit(v, out.views[v]), defs));
   }
   for (const v of EXTRA) {
     const dir = path.join(ROOT, v);

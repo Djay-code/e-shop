@@ -41,7 +41,10 @@
   suivre({t:"v"});
   document.addEventListener("click",function(e){
     var a=e.target.closest("a");
-    if(!a||!/amazon\.|amzn\.to/.test(a.href))return;
+    if(!a)return;
+    // Clic sur l'encart du kit : on note la page d'origine
+    if(a.dataset.kit){suivre({t:"kit",p:a.dataset.kit});return;}
+    if(!/amazon\.|amzn\.to/.test(a.href))return;
     var pk=a.closest(".pick");
     suivre({t:"c",p:a.dataset.q||a.dataset.nom||(pk?pk.querySelector("h2").textContent.replace(/^\d+\.\s*/,""):a.textContent.trim())});
   });
