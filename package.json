@@ -1,0 +1,11 @@
+{
+  "name": "bureau-malin",
+  "private": true,
+  "description": "Site Bureau Malin : pages statiques et fonctions Netlify",
+  "scripts": {
+    "build:pages": "node outils/build.js"
+  },
+  "dependencies": {
+    "@netlify/blobs": "11.1.5"
+  }
+}
