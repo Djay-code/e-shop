@@ -56,7 +56,10 @@
   for = "/*"
   [headers.values]
     # Seuls les scripts du site s'exécutent ; rien ne peut afficher le site dans un cadre
-    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    # Exception : le badge « Powered by Netlify », ajouté par Netlify sur l'offre gratuite.
+    # Son script est autorisé par son empreinte (sha256-…). Si Netlify le modifie, le badge se fige
+    # (le site, lui, continue de fonctionner) : relever la nouvelle empreinte dans la console du navigateur.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-BkKP2XO6WOEc3kXOiLr2ZoY83hamalKjPY9xBcbXVuw='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://app.netlify.com; frame-ancestors 'none'; upgrade-insecure-requests"
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
