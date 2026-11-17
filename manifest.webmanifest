@@ -1,0 +1,25 @@
+{
+  "name": "Bureau Malin",
+  "short_name": "Bureau Malin",
+  "description": "Comparatifs, configurateur de bureau et guide d’accessibilité pour bien s’équiper en télétravail.",
+  "lang": "fr",
+  "dir": "ltr",
+  "id": "/",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#EEF1EE",
+  "theme_color": "#141A1C",
+  "categories": ["shopping", "productivity"],
+  "icons": [
+    { "src": "/assets/icones/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icones/icone-masque-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Configurateur", "short_name": "Configurateur", "url": "/configurateur/", "icons": [{ "src": "/assets/icones/icone-192.png", "sizes": "192x192" }] },
+    { "name": "Comparatif claviers", "short_name": "Claviers", "url": "/clavier/", "icons": [{ "src": "/assets/icones/icone-192.png", "sizes": "192x192" }] },
+    { "name": "Guide accessibilité", "short_name": "Accessibilité", "url": "/handicap/", "icons": [{ "src": "/assets/icones/icone-192.png", "sizes": "192x192" }] }
+  ]
+}
