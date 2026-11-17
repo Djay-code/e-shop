@@ -40,3 +40,16 @@ Variables d’environnement à créer dans Netlify (Project configuration > Envi
 - Compléter les champs surlignés en jaune dans `_source/extra/mentions-legales.html` et `cgv.html`, puis relancer le build.
 - Coller le lien de paiement du kit dans `assets/kit.js` (`LIEN_PAIEMENT`).
 - Coller les liens produits Amazon (SiteStripe) dans `LIENS` de `_source/site.html`, puis relancer le build.
+
+## Application installable
+
+Le site s’installe comme une application (téléphone et ordinateur) et les pages déjà visitées restent lisibles hors connexion.
+
+| Fichier | Rôle |
+|---|---|
+| `manifest.webmanifest` | Nom, couleurs, icônes et raccourcis de l’application |
+| `sw.js` | Gère l’installation et la lecture hors connexion. Changer `VERSION` efface les anciennes copies chez les visiteurs. |
+| `assets/app.js` | Active `sw.js` sur chaque page |
+| `assets/icones/` | Icônes de l’application |
+| `hors-ligne.html` | Page affichée sans réseau quand la page demandée n’a jamais été ouverte |
+
