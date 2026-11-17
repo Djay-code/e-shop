@@ -19,15 +19,32 @@ Si la question n'a rien à voir avec l'équipement d'un bureau, dis-le poliment 
 const json = (data, status = 200) =>
   new Response(JSON.stringify(data), { status, headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" } });
 
+// Sécurité : l'assistant coûte de l'argent à chaque question. On le réserve donc aux
+// visiteurs du site (même domaine), on refuse les envois trop gros, et Netlify bloque
+// une même adresse IP au-delà de 10 requêtes par minute (voir `config` en bas du fichier).
+const TAILLE_MAX = 8000; // octets
+
+// Vrai si la requête vient d'une page du site lui-même (en-tête Origin ou Referer)
+const memeSite = (req) => {
+  const src = req.headers.get("origin") || req.headers.get("referer");
+  if (!src) return false;
+  try { return new URL(src).host === new URL(req.url).host; } catch { return false; }
+};
+
 export default async (req) => {
   const key = process.env.PERPLEXITY_API_KEY;
   // Le site appelle GET pour savoir s'il doit afficher le bouton de l'assistant
   if (req.method === "GET") return json({ ok: Boolean(key) });
   if (req.method !== "POST") return json({ error: "Méthode non autorisée" }, 405);
   if (!key) return json({ error: "Assistant non configuré" }, 503);
+  if (!memeSite(req)) return json({ error: "Accès refusé" }, 403);
 
   let body;
-  try { body = await req.json(); } catch { return json({ error: "Requête invalide" }, 400); }
+  try {
+    const brut = await req.text();
+    if (brut.length > TAILLE_MAX) return json({ error: "Requête trop longue" }, 413);
+    body = JSON.parse(brut);
+  } catch { return json({ error: "Requête invalide" }, 400); }
 
   // On ne garde que des messages courts et bien formés, en alternance utilisateur / assistant
   const messages = (Array.isArray(body?.messages) ? body.messages : [])
@@ -57,4 +74,9 @@ export default async (req) => {
     console.error("Perplexity", e.message);
     return json({ error: "Service indisponible" }, 502);
   }
+};
+
+export const config = {
+  path: "/api/assistant",
+  rateLimit: { windowLimit: 10, windowSize: 60, aggregateBy: ["ip", "domain"] },
 };

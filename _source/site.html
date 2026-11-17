@@ -901,7 +901,7 @@ a.prod:hover svg,a.prod:hover img{transform:scale(1.03);transition:transform .2s
   });
 
   // Mesure d’audience anonyme, sans cookie : visites et clics vers Amazon
-  function suivre(d){try{navigator.sendBeacon("/.netlify/functions/suivi",JSON.stringify(d));}catch(e){}}
+  function suivre(d){try{navigator.sendBeacon("/api/suivi",JSON.stringify(d));}catch(e){}}
   suivre({t:"v"});
   document.addEventListener("click",function(e){
     var a=e.target.closest("a.btn,a.chip,a.prod");
@@ -934,7 +934,7 @@ a.prod:hover svg,a.prod:hover img{transform:scale(1.03);transition:transform .2s
 <script>
 (function(){
   // Adresse de la fonction Netlify qui garde la clé Perplexity côté serveur
-  var ENDPOINT="/.netlify/functions/assistant";
+  var ENDPOINT="/api/assistant";
   var hist=[],panel=document.getElementById("aiPanel"),log=document.getElementById("aiLog"),inp=document.getElementById("aiIn"),
       openB=document.getElementById("aiOpen"),send=document.getElementById("aiSend");
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}

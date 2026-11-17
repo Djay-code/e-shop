@@ -33,10 +33,10 @@ Variables d’environnement à créer dans Netlify (Project configuration > Envi
 | Variable | Rôle |
 |---|---|
 | `PERPLEXITY_API_KEY` | Clé de l’API Perplexity pour l’assistant. Sans elle, le bouton de l’assistant ne s’affiche pas. |
-| `STATS_KEY` | Mot de passe de votre choix pour lire les statistiques : `/.netlify/functions/suivi?cle=…&jours=30` |
+| `STATS_KEY` | Mot de passe de votre choix pour lire les statistiques : `/api/suivi?cle=…&jours=30` |
 
 ## Avant de publier
 
 - Compléter les champs surlignés en jaune dans `_source/extra/mentions-legales.html` et `cgv.html`, puis relancer le build.
-- Coller le lien de paiement du kit dans `kit/index.html` (`LIEN_PAIEMENT`).
+- Coller le lien de paiement du kit dans `assets/kit.js` (`LIEN_PAIEMENT`).
 - Coller les liens produits Amazon (SiteStripe) dans `LIENS` de `_source/site.html`, puis relancer le build.
