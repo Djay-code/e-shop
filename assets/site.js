@@ -30,7 +30,7 @@
   }
 
   // Mesure d’audience anonyme, sans cookie : visites et clics vers les marchands
-  var SUIVI="/.netlify/functions/suivi";
+  var SUIVI="/api/suivi";
   var local=/^(localhost|127\.)/.test(location.hostname);
   function suivre(d){
     if(local)return;
@@ -49,7 +49,7 @@
   // Assistant d’achat : il n’apparaît que si la fonction Netlify répond et que la clé est configurée
   var dock=document.querySelector(".ai-dock");
   if(!dock)return;
-  var ENDPOINT="/.netlify/functions/assistant";
+  var ENDPOINT="/api/assistant";
   if(local){dock.remove();return;}
   fetch(ENDPOINT,{method:"GET"}).then(function(r){return r.ok?r.json():null;}).then(function(d){
     if(d&&d.ok){dock.hidden=false;brancher();}else dock.remove();
