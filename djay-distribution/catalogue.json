@@ -1,0 +1,524 @@
+{
+  "_info": "Catalogue du comparateur Djay Distribution. Modifiez ce fichier pour ajouter des produits ou changer les prix (en euros TTC). 'asin' : référence Amazon, laisser vide si inconnue.",
+  "societe": {
+    "nom": "Djay Distribution",
+    "email": "jerome.dejesus29200@gmail.com",
+    "majPrix": "novembre 2026",
+    "amazonTag": "bureau-malin-21"
+  },
+  "categories": [
+    {
+      "id": "clavier",
+      "nom": "Claviers"
+    },
+    {
+      "id": "souris",
+      "nom": "Souris"
+    },
+    {
+      "id": "webcam",
+      "nom": "Webcams"
+    },
+    {
+      "id": "ecran",
+      "nom": "Écrans"
+    },
+    {
+      "id": "casque",
+      "nom": "Casques"
+    },
+    {
+      "id": "hub",
+      "nom": "Hubs USB-C"
+    }
+  ],
+  "usages": {
+    "polyvalent": "Usage polyvalent",
+    "petit-budget": "Petit budget",
+    "ergonomie": "Ergonomie",
+    "visio": "Visio",
+    "bruit": "Environnement bruyant",
+    "sombre": "Pièce sombre",
+    "creatif": "Travail créatif",
+    "code": "Frappe intensive",
+    "poste-fixe": "Poste fixe"
+  },
+  "produits": [
+    {
+      "id": "mx-keys-s",
+      "categorie": "clavier",
+      "nom": "Logitech MX Keys S",
+      "marque": "Logitech",
+      "prix": 110,
+      "pour": "Usage polyvalent",
+      "tags": [
+        "polyvalent"
+      ],
+      "caracteristiques": {
+        "Type": "Membrane",
+        "Rétroéclairé": "Oui",
+        "Multi-appareils": "Oui"
+      },
+      "description": "Frappe douce et silencieuse, rétroéclairage intelligent, bascule entre trois appareils.",
+      "plus": [
+        "Frappe silencieuse",
+        "Rétroéclairé",
+        "Jusqu’à 3 appareils"
+      ],
+      "moins": [
+        "Prix élevé",
+        "Pas de version compacte"
+      ],
+      "asin": "B07W5JK4VS"
+    },
+    {
+      "id": "keychron-k2",
+      "categorie": "clavier",
+      "nom": "Keychron K2",
+      "marque": "Keychron",
+      "prix": 90,
+      "pour": "Amateurs de frappe",
+      "tags": [
+        "code"
+      ],
+      "caracteristiques": {
+        "Type": "Mécanique",
+        "Rétroéclairé": "Oui",
+        "Multi-appareils": "Oui"
+      },
+      "description": "Un clavier mécanique compact (75 %), agréable pour qui tape beaucoup.",
+      "plus": [
+        "Sensation mécanique",
+        "Format compact",
+        "Rétroéclairé"
+      ],
+      "moins": [
+        "Plus bruyant",
+        "Assez haut sans repose-poignet"
+      ],
+      "asin": ""
+    },
+    {
+      "id": "k380",
+      "categorie": "clavier",
+      "nom": "Logitech K380",
+      "marque": "Logitech",
+      "prix": 40,
+      "pour": "Petit budget",
+      "tags": [
+        "petit-budget"
+      ],
+      "caracteristiques": {
+        "Type": "Membrane",
+        "Rétroéclairé": "Non",
+        "Multi-appareils": "Oui"
+      },
+      "description": "Compact, léger et multi-appareils : un premier vrai clavier sans se ruiner.",
+      "plus": [
+        "Petit prix",
+        "Léger et compact",
+        "Multi-appareils"
+      ],
+      "moins": [
+        "Pas de rétroéclairage",
+        "Pavé numérique absent"
+      ],
+      "asin": "B013SL1ZQ0"
+    },
+    {
+      "id": "mx-master-3s",
+      "categorie": "souris",
+      "nom": "Logitech MX Master 3S",
+      "marque": "Logitech",
+      "prix": 100,
+      "pour": "Usage polyvalent",
+      "tags": [
+        "polyvalent"
+      ],
+      "caracteristiques": {
+        "Forme": "Sculptée",
+        "Silencieuse": "Oui",
+        "Multi-appareils": "Oui"
+      },
+      "description": "Une souris sculptée pour la main, aux clics silencieux, avec une molette très rapide pour parcourir de longs documents.",
+      "plus": [
+        "Très confortable",
+        "Clics silencieux",
+        "Jusqu’à 3 appareils"
+      ],
+      "moins": [
+        "Prix élevé",
+        "Pas pour les gauchers"
+      ],
+      "asin": "B07W5JKHFZ"
+    },
+    {
+      "id": "lift",
+      "categorie": "souris",
+      "nom": "Logitech Lift",
+      "marque": "Logitech",
+      "prix": 70,
+      "pour": "Poignet sensible",
+      "tags": [
+        "ergonomie"
+      ],
+      "caracteristiques": {
+        "Forme": "Verticale",
+        "Silencieuse": "Oui",
+        "Multi-appareils": "Oui"
+      },
+      "description": "Une souris verticale qui garde la main en position de poignée de main, plus naturelle pour l’avant-bras.",
+      "plus": [
+        "Soulage le poignet",
+        "Idéale pour les mains petites et moyennes"
+      ],
+      "moins": [
+        "Quelques jours d’adaptation",
+        "Moins précise au début"
+      ],
+      "asin": "B07W4DGC27"
+    },
+    {
+      "id": "m720",
+      "categorie": "souris",
+      "nom": "Logitech M720 Triathlon",
+      "marque": "Logitech",
+      "prix": 45,
+      "pour": "Petit budget",
+      "tags": [
+        "petit-budget"
+      ],
+      "caracteristiques": {
+        "Forme": "Classique",
+        "Silencieuse": "Non",
+        "Multi-appareils": "Oui"
+      },
+      "description": "Une souris confortable et polyvalente, qui passe d’un appareil à l’autre d’un bouton.",
+      "plus": [
+        "Bon prix",
+        "Multi-appareils",
+        "Grande autonomie"
+      ],
+      "moins": [
+        "Clics bruyants",
+        "Moins ergonomique"
+      ],
+      "asin": "B01KZVQB42"
+    },
+    {
+      "id": "brio-500",
+      "categorie": "webcam",
+      "nom": "Logitech Brio 500",
+      "marque": "Logitech",
+      "prix": 110,
+      "pour": "Usage polyvalent",
+      "tags": [
+        "polyvalent",
+        "visio"
+      ],
+      "caracteristiques": {
+        "Définition": "Full HD",
+        "Lumière": "Correction auto",
+        "Cache": "Oui"
+      },
+      "description": "Image Full HD nette, correction automatique de la lumière et cache intégré pour la confidentialité.",
+      "plus": [
+        "Bonne gestion du contre-jour",
+        "Cache de confidentialité",
+        "Branchement USB-C"
+      ],
+      "moins": [
+        "Pas de 4K",
+        "Micro correct, sans plus"
+      ],
+      "asin": "B07W5JKKFJ"
+    },
+    {
+      "id": "kiyo",
+      "categorie": "webcam",
+      "nom": "Razer Kiyo",
+      "marque": "Razer",
+      "prix": 80,
+      "pour": "Pièces sombres",
+      "tags": [
+        "sombre",
+        "visio"
+      ],
+      "caracteristiques": {
+        "Définition": "Full HD",
+        "Lumière": "Anneau lumineux",
+        "Cache": "Non"
+      },
+      "description": "Un anneau lumineux intégré éclaire votre visage, pratique le soir ou dans une pièce sombre.",
+      "plus": [
+        "Éclairage intégré réglable",
+        "Prix raisonnable"
+      ],
+      "moins": [
+        "Image moins fine en plein jour",
+        "Design imposant"
+      ],
+      "asin": "B076QK6489"
+    },
+    {
+      "id": "c920",
+      "categorie": "webcam",
+      "nom": "Logitech C920",
+      "marque": "Logitech",
+      "prix": 65,
+      "pour": "Petit budget",
+      "tags": [
+        "petit-budget",
+        "visio"
+      ],
+      "caracteristiques": {
+        "Définition": "Full HD",
+        "Lumière": "Basique",
+        "Cache": "Non"
+      },
+      "description": "La référence depuis des années : simple, fiable et compatible avec tout.",
+      "plus": [
+        "Prix bas",
+        "Compatible partout"
+      ],
+      "moins": [
+        "Gère mal le contre-jour",
+        "Pas de cache"
+      ],
+      "asin": "B006A2Q81M"
+    },
+    {
+      "id": "p2723qe",
+      "categorie": "ecran",
+      "nom": "Dell P2723QE",
+      "marque": "Dell",
+      "prix": 480,
+      "pour": "Laptop récent",
+      "tags": [
+        "polyvalent"
+      ],
+      "caracteristiques": {
+        "Taille": "27 pouces",
+        "Définition": "4K",
+        "USB-C": "Oui"
+      },
+      "description": "Un 27 pouces 4K avec un port USB-C qui transmet l’image et recharge l’ordinateur avec un seul câble.",
+      "plus": [
+        "Un seul câble pour tout",
+        "Texte très net",
+        "Pied réglable en hauteur"
+      ],
+      "moins": [
+        "Prix élevé",
+        "Pas fait pour le jeu"
+      ],
+      "asin": "B09TY127B8"
+    },
+    {
+      "id": "27up850",
+      "categorie": "ecran",
+      "nom": "LG 27UP850",
+      "marque": "LG",
+      "prix": 430,
+      "pour": "Créatifs",
+      "tags": [
+        "creatif"
+      ],
+      "caracteristiques": {
+        "Taille": "27 pouces",
+        "Définition": "4K",
+        "USB-C": "Oui"
+      },
+      "description": "Un 27 pouces 4K aux couleurs fidèles, avec USB-C, apprécié pour le travail créatif.",
+      "plus": [
+        "Couleurs fidèles",
+        "USB-C"
+      ],
+      "moins": [
+        "Prix élevé",
+        "Haut-parleurs basiques"
+      ],
+      "asin": "B08YJMMYBX"
+    },
+    {
+      "id": "s2721ds",
+      "categorie": "ecran",
+      "nom": "Dell S2721DS",
+      "marque": "Dell",
+      "prix": 250,
+      "pour": "Petit budget",
+      "tags": [
+        "petit-budget"
+      ],
+      "caracteristiques": {
+        "Taille": "27 pouces",
+        "Définition": "QHD",
+        "USB-C": "Non"
+      },
+      "description": "Un 27 pouces QHD : bien plus de place que le Full HD, pour un prix raisonnable.",
+      "plus": [
+        "Bon rapport qualité-prix",
+        "Assez net pour le texte"
+      ],
+      "moins": [
+        "Pas d’USB-C",
+        "Moins net qu’un 4K"
+      ],
+      "asin": "B08GGG9BFJ"
+    },
+    {
+      "id": "evolve2-65",
+      "categorie": "casque",
+      "nom": "Jabra Evolve2 65",
+      "marque": "Jabra",
+      "prix": 200,
+      "pour": "Réunions",
+      "tags": [
+        "visio"
+      ],
+      "caracteristiques": {
+        "Micro": "Sur perche",
+        "Réduction de bruit": "Passive"
+      },
+      "description": "Un casque pensé pour le bureau : micro sur perche très clair, voyant d’occupation et grande autonomie.",
+      "plus": [
+        "Micro excellent",
+        "Voyant « occupé »",
+        "Confortable toute la journée"
+      ],
+      "moins": [
+        "Moins riche pour la musique",
+        "Prix élevé"
+      ],
+      "asin": "B086M57V71"
+    },
+    {
+      "id": "wh-1000xm5",
+      "categorie": "casque",
+      "nom": "Sony WH-1000XM5",
+      "marque": "Sony",
+      "prix": 330,
+      "pour": "Environnement bruyant",
+      "tags": [
+        "bruit"
+      ],
+      "caracteristiques": {
+        "Micro": "Intégré",
+        "Réduction de bruit": "Active"
+      },
+      "description": "Une réduction de bruit parmi les meilleures, et un son très agréable entre deux réunions.",
+      "plus": [
+        "Réduction de bruit excellente",
+        "Son très agréable"
+      ],
+      "moins": [
+        "Pas de micro sur perche",
+        "Prix élevé"
+      ],
+      "asin": "B09Y2MYL5C"
+    },
+    {
+      "id": "zone-vibe-100",
+      "categorie": "casque",
+      "nom": "Logitech Zone Vibe 100",
+      "marque": "Logitech",
+      "prix": 90,
+      "pour": "Petit budget",
+      "tags": [
+        "petit-budget",
+        "visio"
+      ],
+      "caracteristiques": {
+        "Micro": "Intégré",
+        "Réduction de bruit": "Non"
+      },
+      "description": "Léger et confortable, avec un micro intégré correct pour les visios du quotidien.",
+      "plus": [
+        "Très léger",
+        "Prix accessible"
+      ],
+      "moins": [
+        "Pas de réduction de bruit active",
+        "Micro moins précis"
+      ],
+      "asin": "B07W7JYN4P"
+    },
+    {
+      "id": "anker-341",
+      "categorie": "hub",
+      "nom": "Anker 341 (7-en-1)",
+      "marque": "Anker",
+      "prix": 35,
+      "pour": "Usage polyvalent",
+      "tags": [
+        "polyvalent"
+      ],
+      "caracteristiques": {
+        "Ports": "7",
+        "Recharge du laptop": "Oui"
+      },
+      "description": "HDMI, ports USB, lecteur de cartes et recharge du laptop, dans un boîtier compact.",
+      "plus": [
+        "Compact",
+        "Recharge le laptop",
+        "Lecteur de cartes"
+      ],
+      "moins": [
+        "4K limitée en fluidité",
+        "Chauffe un peu"
+      ],
+      "asin": "B0BMXR7B2Q"
+    },
+    {
+      "id": "caldigit-ts4",
+      "categorie": "hub",
+      "nom": "CalDigit TS4",
+      "marque": "CalDigit",
+      "prix": 380,
+      "pour": "Poste fixe complet",
+      "tags": [
+        "poste-fixe"
+      ],
+      "caracteristiques": {
+        "Ports": "18",
+        "Recharge du laptop": "Oui"
+      },
+      "description": "Une station d’accueil Thunderbolt avec une multitude de ports, très stable au quotidien.",
+      "plus": [
+        "Énormément de ports",
+        "Très stable",
+        "Recharge rapide du laptop"
+      ],
+      "moins": [
+        "Très cher",
+        "Bloc d’alimentation à brancher"
+      ],
+      "asin": "B09GFRPGWZ"
+    },
+    {
+      "id": "ugreen-5en1",
+      "categorie": "hub",
+      "nom": "UGREEN 5-en-1",
+      "marque": "UGREEN",
+      "prix": 25,
+      "pour": "Petit budget",
+      "tags": [
+        "petit-budget"
+      ],
+      "caracteristiques": {
+        "Ports": "5",
+        "Recharge du laptop": "Oui"
+      },
+      "description": "L’essentiel : HDMI et ports USB dans un format de poche.",
+      "plus": [
+        "Petit prix",
+        "Format de poche"
+      ],
+      "moins": [
+        "Peu de ports",
+        "Pas de lecteur de cartes"
+      ],
+      "asin": "B0BR3M8XHK"
+    }
+  ]
+}

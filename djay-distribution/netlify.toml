@@ -1,0 +1,9 @@
+# Application Djay Distribution, publiée comme un projet Netlify séparé de Bureau Malin
+[build]
+  publish = "."
+  command = "echo 'Site statique'"
+
+[[headers]]
+  for = "/catalogue.json"
+  [headers.values]
+    Cache-Control = "public, max-age=300"

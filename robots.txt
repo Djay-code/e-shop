@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /_source/
 Disallow: /outils/
+Disallow: /djay-distribution/
 
 Sitemap: https://bureau-malin.netlify.app/sitemap.xml

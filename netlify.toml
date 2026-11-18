@@ -17,6 +17,12 @@
   force = true
 
 [[redirects]]
+  from = "/djay-distribution/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/outils/*"
   to = "/404.html"
   status = 404
