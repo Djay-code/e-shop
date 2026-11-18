@@ -1,10 +1,11 @@
 {
-  "_info": "Catalogue du comparateur Djay Distribution. Modifiez ce fichier pour ajouter des produits ou changer les prix (en euros TTC). 'asin' : référence Amazon, laisser vide si inconnue.",
+  "_info": "Catalogue du comparateur Djay Distribution. Modifiez ce fichier pour ajouter des produits ou changer les prix (en euros TTC). 'asin' : référence Amazon, laisser vide si inconnue. 'ajouteLe' (AAAA-MM-JJ) : date d'ajout, affiche un badge « Nouveau » pendant 45 jours. Mis à jour automatiquement chaque semaine : voir MISE-A-JOUR.md.",
   "societe": {
     "nom": "Djay Distribution",
     "email": "jerome.dejesus29200@gmail.com",
     "majPrix": "novembre 2026",
-    "amazonTag": "bureau-malin-21"
+    "amazonTag": "bureau-malin-21",
+    "majCatalogue": "2026-11-18"
   },
   "categories": [
     {

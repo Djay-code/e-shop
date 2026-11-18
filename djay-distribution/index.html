@@ -65,6 +65,7 @@ header.top .wrap{display:flex;align-items:center;justify-content:space-between;g
 .card.picked{border-color:var(--brand);box-shadow:0 0 0 2px var(--brand)}
 .card .brand{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
 .card h3{font-size:1.1rem;margin:0}
+.badge-new{display:inline-block;background:var(--accent);color:var(--accent-ink);border-radius:6px;padding:1px 8px;font-size:.72rem;font-weight:800;margin-left:6px;vertical-align:2px}
 .card .pour{display:inline-block;background:var(--surface-2);border-radius:6px;padding:2px 8px;font-size:.82rem;font-weight:600;color:var(--muted)}
 .card .desc{color:var(--muted);font-size:.93rem;margin:0}
 .specs{list-style:none;margin:0;padding:0;font-size:.9rem;border-top:1px solid var(--line)}
@@ -229,6 +230,10 @@ footer.site .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
     Object.keys(sel).forEach(function(k){if(!byId(k)||!(sel[k]>0))delete sel[k];});}
   function save(){try{localStorage.setItem(STORE,JSON.stringify(sel));}catch(e){}}
 
+  // Badge « Nouveau » pendant 45 jours après la date d'ajout du produit
+  function estNouveau(p){if(!p.ajouteLe)return false;var t=Date.parse(p.ajouteLe);return !isNaN(t)&&Date.now()-t<45*864e5&&Date.now()>=t;}
+  function dateFr(s){var t=Date.parse(s);return isNaN(t)?s:new Date(t).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"});}
+
   function maxPrix(cat){return D.produits.filter(function(p){return p.categorie===cat;}).reduce(function(m,p){return Math.max(m,p.prix);},0);}
 
   function setCat(cat,keepCmp){
@@ -266,11 +271,11 @@ footer.site .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
   function render(){
     $("fBudgetOut").textContent=eur(state.budget);
     var l=visibles();
-    $("count").textContent=l.length+" produit"+(l.length>1?"s":"")+" · prix indicatifs TTC, "+D.societe.majPrix;
+    $("count").textContent=l.length+" produit"+(l.length>1?"s":"")+" · prix indicatifs TTC · catalogue mis à jour le "+dateFr(D.societe.majCatalogue||D.societe.majPrix);
     $("grid").innerHTML=l.length?l.map(function(p){
       var on=state.cmp.indexOf(p.id)>=0, full=!on&&state.cmp.length>=MAX_CMP;
       return '<article class="card'+(on?" picked":"")+'">'+
-        '<div><div class="brand">'+esc(p.marque)+'</div><h3>'+esc(p.nom)+'</h3></div>'+
+        '<div><div class="brand">'+esc(p.marque)+'</div><h3>'+esc(p.nom)+(estNouveau(p)?'<span class="badge-new">Nouveau</span>':'')+'</h3></div>'+
         '<span class="pour">'+esc(p.pour)+'</span>'+
         '<p class="desc">'+esc(p.description)+'</p>'+
         '<ul class="specs">'+Object.keys(p.caracteristiques).map(function(k){return '<li><span>'+esc(k)+'</span><strong>'+esc(p.caracteristiques[k])+'</strong></li>';}).join("")+'</ul>'+
