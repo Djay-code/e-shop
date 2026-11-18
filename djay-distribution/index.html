@@ -375,7 +375,12 @@ footer.site .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
   document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!$("drawer").hidden)openSel(false);});
   $("quote").addEventListener("click",quote);
 
-  fetch("catalogue.json").then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(d){
+  // Le catalogue est mis à jour chaque semaine sur la branche GitHub « djay-catalogue ».
+  // Si elle est injoignable ou invalide, on garde le catalogue publié avec le site.
+  var DISTANT="https://raw.githubusercontent.com/Djay-code/e-shop/djay-catalogue/djay-distribution/catalogue.json";
+  function charger(u){return fetch(u,{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(d){
+    if(!d||!Array.isArray(d.produits)||!d.produits.length||!Array.isArray(d.categories)||!d.categories.length)throw new Error("catalogue invalide");return d;});}
+  charger(DISTANT).catch(function(){return charger("catalogue.json");}).then(function(d){
     D=d;load();
     $("contact").innerHTML='Contact : <a href="mailto:'+esc(D.societe.email)+'">'+esc(D.societe.email)+'</a>';
     // Un lien partagé rouvre la même catégorie et la même comparaison

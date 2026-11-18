@@ -31,9 +31,12 @@ Reprendre exactement les champs des produits existants : `id`, `categorie`, `nom
 N’écrire que des caractéristiques vérifiées dans les sources : ne rien inventer.
 
 ## 5. Publication
+Le comparateur en ligne lit son catalogue sur la branche GitHub **`djay-catalogue`**
+(`https://raw.githubusercontent.com/Djay-code/e-shop/djay-catalogue/djay-distribution/catalogue.json`).
+Pousser sur cette branche suffit : le site affiche le nouveau catalogue en quelques minutes, sans republication.
+
 1. Lancer `node djay-distribution/valider-catalogue.js` : la publication est interdite tant qu’il signale une erreur.
 2. Ajouter en tête de `djay-distribution/JOURNAL.md` une entrée datée : chaque changement, sa raison et ses sources (liens).
-3. Commiter et pousser `catalogue.json` et `JOURNAL.md` sur la branche de travail de la session.
-4. Republier sur Ample : `ample_workspace_create` avec `from_app` = `dep_0ce3e46e`, écrire le nouveau `catalogue.json`
-   dans cet espace, puis `ample_deploy` sur l’espace. Le comparateur est en ligne sur https://djay-distribution.ample.run
-5. Si rien n’a changé (ni produit, ni prix), ne rien publier et ne rien commiter.
+3. Commiter `catalogue.json` et `JOURNAL.md` et pousser sur la branche `djay-catalogue`
+   (la créer à partir de l’état actuel si elle n’existe pas encore). Ne jamais réécrire son historique.
+4. Si rien n’a changé (ni produit, ni prix), ne rien commiter.
