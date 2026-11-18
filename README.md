@@ -29,6 +29,14 @@ L’encart « Kit Bureau Malin » est ajouté automatiquement sur l’accueil et
 Son texte, son prix et les pages qui le reçoivent se règlent dans l’objet `KIT` de `outils/build.js`
 (retirer une page de `accroches` retire l’encart de cette page). Les clics sont comptés dans les statistiques (`kit`).
 
+## Vente du kit (Stripe)
+
+1. Stripe (lien de paiement) encaisse les 9 € puis renvoie l’acheteur sur `/kit/merci/?session_id={CHECKOUT_SESSION_ID}`.
+2. Le bouton de cette page appelle la fonction `telecharger`, qui vérifie auprès de Stripe que la commande est payée
+   et porte sur le « Kit Bureau Malin », puis envoie le PDF. Le lien reste valable 30 jours.
+3. Le PDF est stocké **chiffré** (`netlify/functions/telecharger/kit.enc`) : le dépôt public ne permet pas de le lire.
+   Pour remplacer le guide : `KIT_KEY=… node outils/chiffrer-kit.js nouveau.pdf`, puis commiter `kit.enc`.
+
 ## Mise en ligne
 
 Le site doit être déployé **depuis GitHub** (Netlify > Add new project > Import from Git) et non par glisser-déposer :
@@ -39,6 +47,8 @@ Variables d’environnement à créer dans Netlify (Project configuration > Envi
 | Variable | Rôle |
 |---|---|
 | `PERPLEXITY_API_KEY` | Clé de l’API Perplexity pour l’assistant. Sans elle, le bouton de l’assistant ne s’affiche pas. |
+| `STRIPE_SECRET_KEY` | Clé Stripe **à accès limité** (seulement « Checkout Sessions : lecture ») pour vérifier les paiements du kit. |
+| `KIT_KEY` | Clé de déchiffrement du PDF du kit (64 caractères hexadécimaux). |
 | `STATS_KEY` | Mot de passe de votre choix pour lire les statistiques : `/.netlify/functions/suivi?cle=…&jours=30` |
 
 ## Avant de publier

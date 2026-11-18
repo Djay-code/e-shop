@@ -6,6 +6,8 @@
 
 [functions]
   directory = "netlify/functions"
+  # PDF du kit, chiffré : seule la fonction « telecharger » le lit, après paiement confirmé
+  included_files = ["netlify/functions/telecharger/kit.enc"]
 
 # Les fichiers de travail ne sont pas publiés
 [[redirects]]
@@ -24,3 +26,9 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/kit/merci/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "private, no-store"

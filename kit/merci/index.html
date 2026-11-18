@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Merci pour votre achat | Bureau Malin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="/"><span></span>Bureau Malin</a>
+    <nav aria-label="Menu principal">
+      <a href="/">Guides</a>
+      <a href="/configurateur/">Configurateur</a>
+      <a href="/handicap/">Accessibilité</a>
+      <a href="/kit/">Le kit</a>
+      <a href="/transparence/">Transparence</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section>
+<article>
+<div id="ok" hidden>
+<h1>Merci pour votre achat !</h1>
+<p class="lead">Votre paiement est confirmé. Voici votre Kit Bureau Malin.</p>
+<p><a class="btn" id="dl" href="#">Télécharger le kit (PDF, 5 pages)</a></p>
+<div class="disclose">Enregistrez le fichier sur votre appareil. Ce lien reste valable 30 jours : gardez cette page ou votre reçu Stripe, envoyé par e-mail, qui prouve votre achat.</div>
+<h2>Par où commencer</h2>
+<ol>
+<li>Lisez la page 2, « Les bonnes mesures », en restant assis à votre bureau.</li>
+<li>Imprimez la checklist de la page 3 et cochez les réglages au fur et à mesure.</li>
+<li>Pour compléter votre équipement, le <a href="/configurateur/">configurateur</a> compose un setup adapté à votre budget.</li>
+</ol>
+<p>Un souci de téléchargement, ou le kit ne vous convient pas ? Écrivez-nous (adresse dans les <a href="/mentions-legales/">mentions légales</a>) : vous êtes remboursé sous 14 jours, sans justification. Voir les <a href="/cgv/">conditions de vente</a>.</p>
+</div>
+<div id="ko" hidden>
+<h1>Page de téléchargement du kit</h1>
+<p>Cette page s’affiche après l’achat du <a href="/kit/">Kit Bureau Malin</a>. Si vous avez payé et que vous arrivez ici sans bouton de téléchargement, écrivez-nous avec votre reçu Stripe : nous vous envoyons le guide.</p>
+</div>
+</article>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Bureau Malin</span>
+    <span class="links"><a href="/transparence/">Transparence et affiliation</a> <a href="/mentions-legales/">Mentions légales</a> <a href="/cgv/">Conditions de vente</a></span>
+  </div>
+</footer>
+<script>
+(function(){
+  // Stripe ajoute ?session_id=cs_… à l'adresse ; la fonction vérifie le paiement avant de donner le PDF
+  var id=new URLSearchParams(location.search).get("session_id")||"";
+  var ok=/^cs_(live|test)_[A-Za-z0-9]+$/.test(id);
+  document.getElementById(ok?"ok":"ko").hidden=false;
+  if(ok)document.getElementById("dl").href="/.netlify/functions/telecharger?session_id="+encodeURIComponent(id);
+})();
+</script>
+</body>
+</html>
