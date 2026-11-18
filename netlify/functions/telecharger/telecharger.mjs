@@ -18,7 +18,7 @@ function page(titre, message, status) {
   const html = `<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex"><title>${titre} | Bureau Malin</title><link rel="stylesheet" href="/assets/site.css"></head>
 <body><main><section><article><h1>${titre}</h1><p>${message}</p>
-<p><a href="/mentions-legales/">Nous contacter</a> · <a href="/">Retour au site</a></p></article></section></main></body></html>`;
+<p>Contact : <a href="mailto:jerome.dejesus29200@gmail.com">jerome.dejesus29200@gmail.com</a> · <a href="/">Retour au site</a></p></article></section></main></body></html>`;
   return new Response(html, { status, headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
 }
 
