@@ -37,6 +37,9 @@ Pousser sur cette branche suffit : le site affiche le nouveau catalogue en quelq
 
 1. Lancer `node djay-distribution/valider-catalogue.js` : la publication est interdite tant qu’il signale une erreur.
 2. Ajouter en tête de `djay-distribution/JOURNAL.md` une entrée datée : chaque changement, sa raison et ses sources (liens).
+   Ne jamais effacer d’entrée du journal : quand il dépasse 12 entrées détaillées, compacter les plus anciennes
+   (par mois, en bas du fichier, sous « Archives compactées ») en gardant pour chacune la date, les produits
+   ajoutés, retirés ou repricés, et la raison en une ligne. Les liens sources restent dans l’historique Git.
 3. Commiter `catalogue.json` et `JOURNAL.md` et pousser sur la branche `djay-catalogue`
    (la créer à partir de l’état actuel si elle n’existe pas encore). Ne jamais réécrire son historique.
 4. Si rien n’a changé (ni produit, ni prix), ne rien commiter.

@@ -5,7 +5,7 @@
     "email": "jerome.dejesus29200@gmail.com",
     "majPrix": "novembre 2026",
     "amazonTag": "bureau-malin-21",
-    "majCatalogue": "2026-11-18"
+    "majCatalogue": "2026-11-22"
   },
   "categories": [
     {
@@ -127,11 +127,11 @@
       "asin": "B013SL1ZQ0"
     },
     {
-      "id": "mx-master-3s",
+      "id": "mx-master-4",
       "categorie": "souris",
-      "nom": "Logitech MX Master 3S",
+      "nom": "Logitech MX Master 4",
       "marque": "Logitech",
-      "prix": 100,
+      "prix": 120,
       "pour": "Usage polyvalent",
       "tags": [
         "polyvalent"
@@ -141,17 +141,18 @@
         "Silencieuse": "Oui",
         "Multi-appareils": "Oui"
       },
-      "description": "Une souris sculptée pour la main, aux clics silencieux, avec une molette très rapide pour parcourir de longs documents.",
+      "description": "La remplaçante de la MX Master 3S : même forme sculptée, clics silencieux, plus un retour haptique et un menu de raccourcis (Actions Ring) sous le pouce.",
       "plus": [
         "Très confortable",
-        "Clics silencieux",
-        "Jusqu’à 3 appareils"
+        "Raccourcis Actions Ring",
+        "Matériaux plus durables"
       ],
       "moins": [
         "Prix élevé",
         "Pas pour les gauchers"
       ],
-      "asin": "B07W5JKHFZ"
+      "asin": "B0FHHSZ8WM",
+      "ajouteLe": "2026-11-22"
     },
     {
       "id": "lift",
@@ -394,11 +395,11 @@
       "asin": "B086M57V71"
     },
     {
-      "id": "wh-1000xm5",
+      "id": "wh-1000xm6",
       "categorie": "casque",
-      "nom": "Sony WH-1000XM5",
+      "nom": "Sony WH-1000XM6",
       "marque": "Sony",
-      "prix": 330,
+      "prix": 379,
       "pour": "Environnement bruyant",
       "tags": [
         "bruit"
@@ -407,16 +408,18 @@
         "Micro": "Intégré",
         "Réduction de bruit": "Active"
       },
-      "description": "Une réduction de bruit parmi les meilleures, et un son très agréable entre deux réunions.",
+      "description": "Le successeur du XM5 : réduction de bruit encore meilleure (processeur QN3, 12 micros), appels plus clairs et casque de nouveau pliable.",
       "plus": [
-        "Réduction de bruit excellente",
-        "Son très agréable"
+        "Réduction de bruit de référence",
+        "Appels plus clairs",
+        "Pliable avec étui"
       ],
       "moins": [
         "Pas de micro sur perche",
         "Prix élevé"
       ],
-      "asin": "B09Y2MYL5C"
+      "asin": "B0F2TT8Q7M",
+      "ajouteLe": "2026-11-22"
     },
     {
       "id": "zone-vibe-100",
