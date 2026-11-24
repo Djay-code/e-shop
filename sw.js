@@ -7,7 +7,7 @@
 // - /api/ (assistant, mesure d'audience) et les autres sites : jamais gardés en mémoire.
 //
 // Changer VERSION efface les anciennes copies chez les visiteurs.
-const VERSION = "bm-1";
+const VERSION = "bm-2";
 const PAGES = "pages-" + VERSION;
 const FICHIERS = "fichiers-" + VERSION;
 const HORS_LIGNE = "/hors-ligne.html";
