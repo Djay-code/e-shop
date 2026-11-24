@@ -177,3 +177,7 @@ footer .links a{margin-left:16px}
   nav a{margin:0}
   footer .links a{margin:0 16px 0 0}
 }
+
+/* Logo BM devant le nom (remplace le carré néon) */
+header.top .logo{display:inline-flex;align-items:center}
+header.top .logo span{width:1.6em;height:1.6em;margin-right:.45em;transform:none;border-radius:22%;background:url(/assets/logo.svg) center/contain no-repeat;box-shadow:0 0 8px rgba(0,229,255,.45);flex:none}

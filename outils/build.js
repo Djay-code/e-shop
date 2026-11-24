@@ -98,6 +98,9 @@ nav a[aria-current="page"]{color:var(--accent)}
 footer .links a{margin-left:16px}
 [data-a-completer]{background:var(--hl);color:#1E2A2F;padding:0 4px;border-radius:3px}
 .legal h2{font-size:1.35rem;margin-top:1.4em}
+/* Logo BM devant le nom (remplace le carré néon) */
+header.top .logo{display:inline-flex;align-items:center}
+header.top .logo span{width:1.6em;height:1.6em;margin-right:.45em;transform:none;border-radius:22%;background:url(/assets/logo.svg) center/contain no-repeat;box-shadow:0 0 8px rgba(0,229,255,.45);flex:none}
 @media (max-width:820px){
   nav{overflow:visible;white-space:normal;display:flex;flex-wrap:wrap;gap:4px 16px}
   nav a{margin:0}
