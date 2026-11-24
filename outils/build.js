@@ -7,6 +7,7 @@
 const fs = require("fs");
 const path = require("path");
 const { chromium } = require("playwright");
+const { ajouter } = require("./donnees-structurees");
 
 const ROOT = path.resolve(__dirname, "..");
 const SITE = "https://bureau-malin.netlify.app";
@@ -105,7 +106,7 @@ footer .links a{margin-left:16px}
 `;
 
 function page(v, main, defs) {
-  return `${head(v)}
+  return ajouter(url(v), `${head(v)}
 <body>
 ${defs || ""}
 ${header(v)}
@@ -119,7 +120,7 @@ ${ASSISTANT}
 <script src="/assets/site.js" defer></script>
 </body>
 </html>
-`;
+`);
 }
 
 (async () => {
