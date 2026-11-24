@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modération des avis | Bureau Malin</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<main>
+<section class="avis">
+  <h1>Modération des avis</h1>
+  <form class="avis-form" id="cleForm">
+    <label>Clé de modération <input id="cle" type="password" autocomplete="current-password" required></label>
+    <button type="submit" class="btn">Afficher les avis en attente</button>
+    <p class="avis-etat" id="etat" role="status"></p>
+  </form>
+  <ul class="avis-liste" id="liste"></ul>
+</section>
+</main>
+<script src="/assets/moderation.js" defer></script>
+</body>
+</html>

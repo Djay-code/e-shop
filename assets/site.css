@@ -181,3 +181,24 @@ footer .links a{margin-left:16px}
 /* Logo BM devant le nom (remplace le carré néon) */
 header.top .logo{display:inline-flex;align-items:center}
 header.top .logo span{width:1.6em;height:1.6em;margin-right:.45em;transform:none;border-radius:22%;background:url(/assets/logo.svg) center/contain no-repeat;box-shadow:0 0 8px rgba(0,229,255,.45);flex:none}
+
+/* Avis des lecteurs */
+.avis[hidden]{display:none}
+.avis{max-width:760px;margin:48px auto;padding:0 20px}
+.avis-resume{color:var(--muted)}
+.avis-liste{list-style:none;padding:0;margin:16px 0 32px;display:grid;gap:12px}
+.avis-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.avis-item p{margin:4px 0}
+.avis-note{color:#E0A400;letter-spacing:2px}
+.avis-texte{white-space:pre-line}
+.avis-qui{color:var(--muted);font-size:.9rem}
+.avis-form{display:grid;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.avis-form h3{margin:0}
+.avis-form label{display:grid;gap:6px;font-weight:600}
+.avis-form input[type=text],.avis-form select,.avis-form textarea{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);min-height:44px;box-sizing:border-box}
+.avis-etoiles{border:0;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px 16px}
+.avis-etoiles legend{font-weight:600;margin-bottom:6px}
+.avis-etoiles label{display:inline-flex;align-items:center;gap:6px;font-weight:400;min-height:44px}
+.avis-piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.avis-info,.avis-etat{margin:0;color:var(--muted);font-size:.9rem}
+.avis-form button{justify-self:start}
