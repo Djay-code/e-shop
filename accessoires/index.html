@@ -92,6 +92,30 @@
     </div>
   </article>
 </section>
+<section class="avis" data-page="accessoires" hidden>
+  <div class="wrap-avis">
+    <h2 id="avis-titre">Avis des lecteurs</h2>
+    <p class="avis-resume" aria-live="polite"></p>
+    <ul class="avis-liste"></ul>
+    <form class="avis-form" aria-labelledby="avis-donner">
+      <h3 id="avis-donner">Donnez votre avis</h3>
+      <label>Produit <select name="produit" required><option value="">Choisir…</option></select></label>
+      <fieldset class="avis-etoiles"><legend>Votre note</legend>
+        <label><input type="radio" name="note" value="1" required> 1 ★</label>
+        <label><input type="radio" name="note" value="2"> 2 ★</label>
+        <label><input type="radio" name="note" value="3"> 3 ★</label>
+        <label><input type="radio" name="note" value="4"> 4 ★</label>
+        <label><input type="radio" name="note" value="5"> 5 ★</label>
+      </fieldset>
+      <label>Prénom ou pseudo (facultatif) <input name="nom" type="text" maxlength="40" autocomplete="nickname"></label>
+      <label>Votre avis <textarea name="texte" rows="4" minlength="20" maxlength="1000" required placeholder="Ce que vous en pensez après l’avoir utilisé"></textarea></label>
+      <label class="avis-piege" aria-hidden="true">Ne pas remplir <input name="site" type="text" tabindex="-1" autocomplete="off"></label>
+      <p class="avis-info">Votre avis est publié après relecture. Pas de lien, pas d’informations personnelles.</p>
+      <button type="submit" class="btn">Envoyer mon avis</button>
+      <p class="avis-etat" role="status"></p>
+    </form>
+  </div>
+</section>
 </main>
 
 <footer>
@@ -110,5 +134,6 @@
   <button class="ai-fab" id="aiOpen" type="button" aria-expanded="false" aria-controls="aiPanel">Demander à l’assistant</button>
 </div>
 <script src="/assets/site.js" defer></script>
+<script src="/assets/avis.js" defer></script>
 </body>
 </html>

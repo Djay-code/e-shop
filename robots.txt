@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /_source/
 Disallow: /outils/
+Disallow: /moderation/
 
 Sitemap: https://bureau-malin.netlify.app/sitemap.xml

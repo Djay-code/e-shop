@@ -8,6 +8,7 @@ const fs = require("fs");
 const path = require("path");
 const { chromium } = require("playwright");
 const { ajouter } = require("./donnees-structurees");
+const { ajouterAvis, CSS: CSS_AVIS } = require("./avis");
 
 const ROOT = path.resolve(__dirname, "..");
 const SITE = "https://bureau-malin.netlify.app";
@@ -109,7 +110,7 @@ header.top .logo span{width:1.6em;height:1.6em;margin-right:.45em;transform:none
 `;
 
 function page(v, main, defs) {
-  return ajouter(url(v), `${head(v)}
+  return ajouterAvis(url(v), ajouter(url(v), `${head(v)}
 <body>
 ${defs || ""}
 ${header(v)}
@@ -123,7 +124,7 @@ ${ASSISTANT}
 <script src="/assets/site.js" defer></script>
 </body>
 </html>
-`);
+`));
 }
 
 (async () => {
@@ -155,7 +156,7 @@ ${ASSISTANT}
     return res;
   }, VIEWS);
 
-  fs.writeFileSync(path.join(ROOT, "assets/site.css"), out.css.trim() + "\n" + CSS_EXTRA);
+  fs.writeFileSync(path.join(ROOT, "assets/site.css"), out.css.trim() + "\n" + CSS_EXTRA + CSS_AVIS);
 
   for (const v of VIEWS) {
     const dir = v === "accueil" ? ROOT : path.join(ROOT, v);
